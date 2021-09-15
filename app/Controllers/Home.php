@@ -10,12 +10,7 @@ class Home extends BaseController
         $data = [
             'title' => 'home'
         ];
-
-        echo view('layout/header', $data);
-        echo view('home/home');
-        echo view('layout/footer');
-
-
+        return view('home/home',$data);
     }
 
     public function about()
@@ -23,8 +18,6 @@ class Home extends BaseController
         $data = [
             'title' => 'about'
         ];
-        echo view('layout/header', $data);
-        echo view('home/about');
-        echo view('layout/footer');
+        return view('home/about', $data);
     }
 }

@@ -1,4 +1,6 @@
+<?= $this->extend('layout/template'); ?>
 
+<?= $this->section('content');?>
       2 of 2
 
       ini about
@@ -9,3 +11,4 @@
 Use these row columns classes to quickly create basic grid layouts or to control your card layouts and override when needed at the column level.
 
 
+<?= $this->endSection(); ?>

@@ -1,2 +1,7 @@
+<?=$this->extend('layout/template');?>
 
-        ini content
+
+<?=$this->section('content');?>
+
+        ini content test
+<?=$this->endSection();?>

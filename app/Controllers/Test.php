@@ -9,10 +9,11 @@ class Test extends BaseController
 
         $data = [
             'title' => 'test'
+            
         ];
-        echo view('layout/header', $data);
-        echo view('test', $data);
-        echo view('layout/footer');
+
+        return view('test', $data);
+     
     }
 
 }
