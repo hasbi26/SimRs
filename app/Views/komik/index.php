@@ -3,10 +3,15 @@
 <?= $this->section('content');?>
 <div class="container-fluid">
     <div class="row">
-        <div class="col">
+      <div class="col">
         <table class="table">
+          <a href="Komik/create" class="btn btn-primary mb-3">tambah data</a>
 <h3>Daftar Komik</h3>
-<a href="Komik/create" class="btn btn-primary mb-3">tambah data</a>
+<?php if (session()->getFlashdata('pesan')) : ?>
+  <div class="alert alert-success" role="alert">
+    <?= session()->getFlashdata('pesan'); ?>
+</div>
+  <?php endif;?>
   <thead>
     <tr>
       <th scope="col">#</th>

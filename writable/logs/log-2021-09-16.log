@@ -1,0 +1,198 @@
+CRITICAL - 2021-09-16 00:17:52 --> Undefined array key "Penulis"
+#0 /home/hasbi/Documents/Dev/SimRs/app/Views/komik/edit.php(24): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', '/home/hasbi/Doc...', 24)
+#1 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(214): include('/home/hasbi/Doc...')
+#2 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /home/hasbi/Documents/Dev/SimRs/system/Common.php(1092): CodeIgniter\View\View->render('komik/edit', Array, true)
+#4 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(126): view('komik/edit', Array)
+#5 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->edit('123')
+#6 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#7 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#10 {main}
+CRITICAL - 2021-09-16 00:18:01 --> Undefined array key "Penerbit"
+#0 /home/hasbi/Documents/Dev/SimRs/app/Views/komik/edit.php(30): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', '/home/hasbi/Doc...', 30)
+#1 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(214): include('/home/hasbi/Doc...')
+#2 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /home/hasbi/Documents/Dev/SimRs/system/Common.php(1092): CodeIgniter\View\View->render('komik/edit', Array, true)
+#4 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(126): view('komik/edit', Array)
+#5 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->edit('123')
+#6 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#7 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#10 {main}
+CRITICAL - 2021-09-16 00:18:07 --> Undefined array key "Sampul"
+#0 /home/hasbi/Documents/Dev/SimRs/app/Views/komik/edit.php(36): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', '/home/hasbi/Doc...', 36)
+#1 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(214): include('/home/hasbi/Doc...')
+#2 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /home/hasbi/Documents/Dev/SimRs/system/Common.php(1092): CodeIgniter\View\View->render('komik/edit', Array, true)
+#4 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(126): view('komik/edit', Array)
+#5 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->edit('123')
+#6 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#7 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#10 {main}
+CRITICAL - 2021-09-16 00:34:25 --> Undefined array key "sampul"
+#0 /home/hasbi/Documents/Dev/SimRs/app/Views/komik/detail.php(12): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', '/home/hasbi/Doc...', 12)
+#1 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(214): include('/home/hasbi/Doc...')
+#2 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /home/hasbi/Documents/Dev/SimRs/system/Common.php(1092): CodeIgniter\View\View->render('komik/detail', Array, true)
+#4 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(55): view('komik/detail', Array)
+#5 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->detail('')
+#6 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#7 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#10 {main}
+CRITICAL - 2021-09-16 00:36:01 --> Too few arguments to function App\Controllers\Komik::edit(), 0 passed in /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php on line 802 and exactly 1 expected
+#0 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->edit()
+#1 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#2 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#4 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#5 {main}
+CRITICAL - 2021-09-16 00:36:30 --> Too few arguments to function App\Controllers\Komik::edit(), 0 passed in /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php on line 802 and exactly 1 expected
+#0 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->edit()
+#1 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#2 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#4 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#5 {main}
+CRITICAL - 2021-09-16 01:33:23 --> Undefined array key "Penulis"
+#0 /home/hasbi/Documents/Dev/SimRs/app/Views/komik/edit.php(25): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', '/home/hasbi/Doc...', 25)
+#1 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(214): include('/home/hasbi/Doc...')
+#2 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /home/hasbi/Documents/Dev/SimRs/system/Common.php(1092): CodeIgniter\View\View->render('komik/edit', Array, true)
+#4 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(126): view('komik/edit', Array)
+#5 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->edit('uka')
+#6 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#7 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#10 {main}
+CRITICAL - 2021-09-16 01:33:26 --> Undefined array key "Penulis"
+#0 /home/hasbi/Documents/Dev/SimRs/app/Views/komik/edit.php(25): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', '/home/hasbi/Doc...', 25)
+#1 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(214): include('/home/hasbi/Doc...')
+#2 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /home/hasbi/Documents/Dev/SimRs/system/Common.php(1092): CodeIgniter\View\View->render('komik/edit', Array, true)
+#4 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(126): view('komik/edit', Array)
+#5 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->edit('uka')
+#6 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#7 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#10 {main}
+ERROR - 2021-09-16 01:36:39 --> Column 'penulis' cannot be null
+CRITICAL - 2021-09-16 01:36:39 --> Column 'penulis' cannot be null
+#0 /home/hasbi/Documents/Dev/SimRs/system/Database/MySQLi/Connection.php(280): mysqli->query('INSERT INTO `ko...')
+#1 /home/hasbi/Documents/Dev/SimRs/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ko...')
+#2 /home/hasbi/Documents/Dev/SimRs/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ko...')
+#3 /home/hasbi/Documents/Dev/SimRs/system/Database/BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ko...', Array, false)
+#4 /home/hasbi/Documents/Dev/SimRs/system/Model.php(239): CodeIgniter\Database\BaseBuilder->insert()
+#5 /home/hasbi/Documents/Dev/SimRs/system/BaseModel.php(738): CodeIgniter\Model->doInsert(Array)
+#6 /home/hasbi/Documents/Dev/SimRs/system/Model.php(620): CodeIgniter\BaseModel->insert(Array, false)
+#7 /home/hasbi/Documents/Dev/SimRs/system/BaseModel.php(658): CodeIgniter\Model->insert(Array, false)
+#8 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(99): CodeIgniter\BaseModel->save(Array)
+#9 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->save()
+#10 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#11 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#13 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#14 {main}
+ERROR - 2021-09-16 02:17:42 --> Column 'sampul' cannot be null
+CRITICAL - 2021-09-16 02:17:42 --> Column 'sampul' cannot be null
+#0 /home/hasbi/Documents/Dev/SimRs/system/Database/MySQLi/Connection.php(280): mysqli->query('INSERT INTO `ko...')
+#1 /home/hasbi/Documents/Dev/SimRs/system/Database/BaseConnection.php(663): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `ko...')
+#2 /home/hasbi/Documents/Dev/SimRs/system/Database/BaseConnection.php(591): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `ko...')
+#3 /home/hasbi/Documents/Dev/SimRs/system/Database/BaseBuilder.php(1733): CodeIgniter\Database\BaseConnection->query('INSERT INTO `ko...', Array, false)
+#4 /home/hasbi/Documents/Dev/SimRs/system/Model.php(239): CodeIgniter\Database\BaseBuilder->insert()
+#5 /home/hasbi/Documents/Dev/SimRs/system/BaseModel.php(738): CodeIgniter\Model->doInsert(Array)
+#6 /home/hasbi/Documents/Dev/SimRs/system/Model.php(620): CodeIgniter\BaseModel->insert(Array, false)
+#7 /home/hasbi/Documents/Dev/SimRs/system/BaseModel.php(658): CodeIgniter\Model->insert(Array, false)
+#8 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(112): CodeIgniter\BaseModel->save(Array)
+#9 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->save()
+#10 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#11 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#13 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#14 {main}
+CRITICAL - 2021-09-16 03:11:21 --> Undefined variable $fileSampul
+#0 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(164): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', '/home/hasbi/Doc...', 164)
+#1 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->update('17')
+#2 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#3 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#6 {main}
+CRITICAL - 2021-09-16 03:32:42 --> finfo_file(/opt/lampp/temp/php559zTq): Failed to open stream: No such file or directory
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'finfo_file(/opt...', '/home/hasbi/Doc...', 109)
+#1 /home/hasbi/Documents/Dev/SimRs/system/Files/File.php(109): finfo_file(Resource id #142, '/opt/lampp/temp...')
+#2 /home/hasbi/Documents/Dev/SimRs/system/HTTP/Files/UploadedFile.php(297): CodeIgniter\Files\File->getMimeType()
+#3 /home/hasbi/Documents/Dev/SimRs/system/HTTP/Files/UploadedFile.php(286): CodeIgniter\HTTP\Files\UploadedFile->guessExtension()
+#4 /home/hasbi/Documents/Dev/SimRs/system/Validation/FileRules.php(136): CodeIgniter\HTTP\Files\UploadedFile->getExtension()
+#5 /home/hasbi/Documents/Dev/SimRs/system/Validation/Validation.php(277): CodeIgniter\Validation\FileRules->is_image(NULL, Array, Array, NULL)
+#6 /home/hasbi/Documents/Dev/SimRs/system/Validation/Validation.php(151): CodeIgniter\Validation\Validation->processRules('sampul', 'sampul', NULL, Array, Array)
+#7 /home/hasbi/Documents/Dev/SimRs/system/Controller.php(160): CodeIgniter\Validation\Validation->run()
+#8 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(196): CodeIgniter\Controller->validate(Array)
+#9 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->update('17')
+#10 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#11 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#13 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#14 {main}
+CRITICAL - 2021-09-16 03:33:26 --> finfo_file(/opt/lampp/temp/phpZWoUbq): Failed to open stream: No such file or directory
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'finfo_file(/opt...', '/home/hasbi/Doc...', 109)
+#1 /home/hasbi/Documents/Dev/SimRs/system/Files/File.php(109): finfo_file(Resource id #142, '/opt/lampp/temp...')
+#2 /home/hasbi/Documents/Dev/SimRs/system/HTTP/Files/UploadedFile.php(297): CodeIgniter\Files\File->getMimeType()
+#3 /home/hasbi/Documents/Dev/SimRs/system/HTTP/Files/UploadedFile.php(286): CodeIgniter\HTTP\Files\UploadedFile->guessExtension()
+#4 /home/hasbi/Documents/Dev/SimRs/system/Validation/FileRules.php(136): CodeIgniter\HTTP\Files\UploadedFile->getExtension()
+#5 /home/hasbi/Documents/Dev/SimRs/system/Validation/Validation.php(277): CodeIgniter\Validation\FileRules->is_image(NULL, Array, Array, NULL)
+#6 /home/hasbi/Documents/Dev/SimRs/system/Validation/Validation.php(151): CodeIgniter\Validation\Validation->processRules('sampul', 'sampul', NULL, Array, Array)
+#7 /home/hasbi/Documents/Dev/SimRs/system/Controller.php(160): CodeIgniter\Validation\Validation->run()
+#8 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(184): CodeIgniter\Controller->validate(Array)
+#9 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->update('17')
+#10 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#11 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#13 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#14 {main}
+CRITICAL - 2021-09-16 03:38:51 --> The original file is not a valid file.
+#0 /home/hasbi/Documents/Dev/SimRs/system/HTTP/Files/UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(205): CodeIgniter\HTTP\Files\UploadedFile->move('img/')
+#2 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->update('17')
+#3 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#4 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#6 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#7 {main}
+CRITICAL - 2021-09-16 03:39:47 --> An exception (RuntimeException) was thrown in /home/hasbi/Documents/Dev/SimRs/system/ThirdParty/Kint/Object/Representation/SplFileInfoRepresentation.php on line 56 while executing Kint Parser Plugin "Kint\Parser\SplFileInfoPlugin". Error message: SplFileInfo::getPerms(): stat failed for /opt/lampp/temp/phpxMCEpt
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(512, 'An exception (R...', '/home/hasbi/Doc...', 589)
+#1 /home/hasbi/Documents/Dev/SimRs/system/ThirdParty/Kint/Parser/Parser.php(589): trigger_error('An exception (R...', 512)
+#2 /home/hasbi/Documents/Dev/SimRs/system/ThirdParty/Kint/Parser/Parser.php(520): Kint\Parser\Parser->applyPlugins(Object(CodeIgniter\HTTP\Files\UploadedFile), Object(Kint\Object\InstanceObject), 2)
+#3 /home/hasbi/Documents/Dev/SimRs/system/ThirdParty/Kint/Parser/Parser.php(163): Kint\Parser\Parser->parseObject(Object(CodeIgniter\HTTP\Files\UploadedFile), Object(Kint\Object\BasicObject))
+#4 /home/hasbi/Documents/Dev/SimRs/system/ThirdParty/Kint/Kint.php(284): Kint\Parser\Parser->parse(Object(CodeIgniter\HTTP\Files\UploadedFile), Object(Kint\Object\BasicObject))
+#5 /home/hasbi/Documents/Dev/SimRs/system/ThirdParty/Kint/Kint.php(265): Kint\Kint->dumpVar(Object(CodeIgniter\HTTP\Files\UploadedFile), Object(Kint\Object\BasicObject))
+#6 /home/hasbi/Documents/Dev/SimRs/system/ThirdParty/Kint/Kint.php(615): Kint\Kint->dumpAll(Array, Array)
+#7 /home/hasbi/Documents/Dev/SimRs/system/Common.php(327): Kint\Kint::dump(Object(CodeIgniter\HTTP\Files\UploadedFile))
+#8 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(206): dd(Object(CodeIgniter\HTTP\Files\UploadedFile))
+#9 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->update('17')
+#10 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#11 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#12 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#13 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#14 {main}
+CRITICAL - 2021-09-16 03:43:08 --> The original file is not a valid file.
+#0 /home/hasbi/Documents/Dev/SimRs/system/HTTP/Files/UploadedFile.php(137): CodeIgniter\HTTP\Exceptions\HTTPException::forInvalidFile()
+#1 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(206): CodeIgniter\HTTP\Files\UploadedFile->move('img/')
+#2 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->update('17')
+#3 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#4 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#6 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#7 {main}
+ERROR - 2021-09-16 04:14:00 --> Table 'ci4.Orang' doesn't exist
+ERROR - 2021-09-16 04:14:03 --> Table 'ci4.Orang' doesn't exist
+ERROR - 2021-09-16 04:14:11 --> Table 'ci4.Orang' doesn't exist
+ERROR - 2021-09-16 04:18:38 --> Unknown column 'updated_at' in 'field list'
