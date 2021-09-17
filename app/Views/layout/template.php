@@ -5,17 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-
-
-        <!-- cssku -->
-        <link rel="stylesheet" href="/css/style.css">
-
-    <title><?= $title ?></title>
-
-
-
+    <meta name="generator" content="Hugo 0.88.1">
+    <title>Dashboard Template · Bootstrap v5.1</title>
     <!-- Bootstrap core CSS -->
+    
+<link href="/assets/dist/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -36,41 +30,48 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="/assets/sidebars/sidebars.css" rel="stylesheet">
+    <!-- <link href="sidebars.css" rel="stylesheet"> -->
+
+    <link href="/assets/dist/css/dashboard.css" rel="stylesheet">
+
   </head>
   <body>
-<div class="container-fluid">
-    <!-- ini logo -->
-  <div class="row">
-    <div class="col col-lg-2">
-      <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-          <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-          <span class="fs-5 fw-semibold">Sim Rs Berlian Kasih</span>
-        </a>
-        
-      </div>
+    
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">SIM RS</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3" href="#">Sign out</a>
     </div>
-
-    <!-- ini top bar -->
-    <div class="col-10">
-----
-
-    </div>
- 
-    </div>
-
+  </div>
+</header>
 
  <?=$this->include('layout/sidebar');?>
 
 <?= $this->renderSection('content'); ?>
 
 
-
-    </div>
+</div>
+    </main>
   </div>
 </div>
-  <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/dist/js/jquery-3.5.1.js"></script>
+  <script src="/assets/dist/js/jquery.dataTables.min.js"></script>
 <script src="/assets/sidebars/sidebars.js"></script>
-</body>
+
+<script>
+$(document).ready(function() {
+    $('#datatable').DataTable();
+} );
+</script>
+      <script src="/assets/dist/js/feather.min.js"></script>
+      <!-- chart -->
+      <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script> -->
+      <script src="/assets/dist/js/dashboard.js"></script>
+  </body>
 </html>

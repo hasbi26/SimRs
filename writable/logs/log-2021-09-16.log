@@ -196,3 +196,111 @@ ERROR - 2021-09-16 04:14:00 --> Table 'ci4.Orang' doesn't exist
 ERROR - 2021-09-16 04:14:03 --> Table 'ci4.Orang' doesn't exist
 ERROR - 2021-09-16 04:14:11 --> Table 'ci4.Orang' doesn't exist
 ERROR - 2021-09-16 04:18:38 --> Unknown column 'updated_at' in 'field list'
+ERROR - 2021-09-16 07:21:38 --> Unknown column 'updated_at' in 'field list'
+CRITICAL - 2021-09-16 07:40:53 --> Class "App\Controllers\OrangModel" not found
+#0 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(779): App\Controllers\Test->__construct()
+#1 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(390): CodeIgniter\CodeIgniter->createController()
+#2 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#4 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#5 {main}
+CRITICAL - 2021-09-16 07:42:14 --> Class "App\Controllers\OrangModel" not found
+#0 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(779): App\Controllers\Test->__construct()
+#1 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(390): CodeIgniter\CodeIgniter->createController()
+#2 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#4 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#5 {main}
+CRITICAL - 2021-09-16 07:43:20 --> Class "App\Controllers\OrangModel" not found
+#0 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(779): App\Controllers\Test->__construct()
+#1 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(390): CodeIgniter\CodeIgniter->createController()
+#2 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#4 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#5 {main}
+CRITICAL - 2021-09-16 07:43:21 --> Class "App\Controllers\OrangModel" not found
+#0 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(779): App\Controllers\Test->__construct()
+#1 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(390): CodeIgniter\CodeIgniter->createController()
+#2 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#4 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#5 {main}
+CRITICAL - 2021-09-16 07:43:24 --> Class "App\Controllers\OrangModel" not found
+#0 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(779): App\Controllers\Test->__construct()
+#1 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(390): CodeIgniter\CodeIgniter->createController()
+#2 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#4 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#5 {main}
+CRITICAL - 2021-09-16 07:43:48 --> Undefined property: App\Controllers\Test::$OrangModel
+#0 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Test.php(23): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined prope...', '/home/hasbi/Doc...', 23)
+#1 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Test->index()
+#2 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#3 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#5 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#6 {main}
+CRITICAL - 2021-09-16 07:48:35 --> Undefined array key "slug"
+#0 /home/hasbi/Documents/Dev/SimRs/app/Views/test.php(34): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined array...', '/home/hasbi/Doc...', 34)
+#1 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(214): include('/home/hasbi/Doc...')
+#2 /home/hasbi/Documents/Dev/SimRs/system/View/View.php(217): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 /home/hasbi/Documents/Dev/SimRs/system/Common.php(1092): CodeIgniter\View\View->render('test', Array, true)
+#4 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Test.php(28): view('test', Array)
+#5 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Test->index()
+#6 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#7 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#10 {main}
+ERROR - 2021-09-16 10:05:02 --> Error connecting to the database: Connection refused
+CRITICAL - 2021-09-16 10:05:02 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+#0 /home/hasbi/Documents/Dev/SimRs/system/Database/BaseConnection.php(570): CodeIgniter\Database\BaseConnection->initialize()
+#1 /home/hasbi/Documents/Dev/SimRs/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 /home/hasbi/Documents/Dev/SimRs/system/Model.php(183): CodeIgniter\Database\BaseBuilder->get()
+#3 /home/hasbi/Documents/Dev/SimRs/system/BaseModel.php(584): CodeIgniter\Model->doFindAll(0, 0)
+#4 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Test.php(23): CodeIgniter\BaseModel->findAll()
+#5 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Test->index()
+#6 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#7 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#10 {main}
+CRITICAL - 2021-09-16 12:09:13 --> unlink(img/12356): No such file or directory
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'unlink(img/1235...', '/home/hasbi/Doc...', 139)
+#1 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(139): unlink('img/12356')
+#2 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->delete('4')
+#3 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#4 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#6 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#7 {main}
+ERROR - 2021-09-16 22:05:21 --> Error connecting to the database: Connection refused
+CRITICAL - 2021-09-16 22:05:21 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+#0 /home/hasbi/Documents/Dev/SimRs/system/Database/BaseConnection.php(570): CodeIgniter\Database\BaseConnection->initialize()
+#1 /home/hasbi/Documents/Dev/SimRs/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 /home/hasbi/Documents/Dev/SimRs/system/Model.php(183): CodeIgniter\Database\BaseBuilder->get()
+#3 /home/hasbi/Documents/Dev/SimRs/system/BaseModel.php(584): CodeIgniter\Model->doFindAll(0, 0)
+#4 /home/hasbi/Documents/Dev/SimRs/app/Models/KomikModel.php(20): CodeIgniter\BaseModel->findAll()
+#5 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Komik.php(22): App\Models\KomikModel->getKomik()
+#6 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Komik->index()
+#7 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Komik))
+#8 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#10 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#11 {main}
+ERROR - 2021-09-16 22:05:28 --> Error connecting to the database: Connection refused
+CRITICAL - 2021-09-16 22:05:28 --> Unable to connect to the database.
+Main connection [MySQLi]: Connection refused
+#0 /home/hasbi/Documents/Dev/SimRs/system/Database/BaseConnection.php(570): CodeIgniter\Database\BaseConnection->initialize()
+#1 /home/hasbi/Documents/Dev/SimRs/system/Database/BaseBuilder.php(1428): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 /home/hasbi/Documents/Dev/SimRs/system/Model.php(183): CodeIgniter\Database\BaseBuilder->get()
+#3 /home/hasbi/Documents/Dev/SimRs/system/BaseModel.php(584): CodeIgniter\Model->doFindAll(0, 0)
+#4 /home/hasbi/Documents/Dev/SimRs/app/Controllers/Test.php(23): CodeIgniter\BaseModel->findAll()
+#5 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(802): App\Controllers\Test->index()
+#6 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(399): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Test))
+#7 /home/hasbi/Documents/Dev/SimRs/system/CodeIgniter.php(317): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 /home/hasbi/Documents/Dev/SimRs/public/index.php(37): CodeIgniter\CodeIgniter->run()
+#9 /home/hasbi/Documents/Dev/SimRs/system/Commands/Server/rewrite.php(43): require_once('/home/hasbi/Doc...')
+#10 {main}
