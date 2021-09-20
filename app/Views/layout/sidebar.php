@@ -20,13 +20,14 @@
                 <div class="collapse" id="masterData">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ">
                   
-                  <li><button class="btn btn-sm btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse1" aria-expanded="false">
+                  <li><button class="btn btn-sm btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#master-karyawan" aria-expanded="false">
                   Karyawan
                     </button>
-                    <div class="collapse" id="account-collapse1">
+                    <li>
+                    <div class="collapse show" id="master-karyawan">
                       <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                       <li><a href="/about" class="link-dark rounded">Master Karyawan</a></li>
-                      <li><a href="#" class="link-dark rounded">Master Divisi</a></li>
+                      <li><a href="/divisi" class="link-dark rounded">Master Divisi</a></li>
                       <li><a href="#" class="link-dark rounded">Master Jabatan</a></li>
                       <li><a href="#" class="link-dark rounded">Master User</a></li>
                       </ul>

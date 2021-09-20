@@ -36,6 +36,9 @@ $routes->post('/login/process', 'Login::process');
 $routes->get('/dashboard', 'Dashboard::index',['filter' => 'auth']);
 $routes->get('/', 'Dashboard::index',['filter' => 'auth']);
 
+// divisi
+$routes->get('/divisi', 'Karyawan/Divisi::Divisi',['filter' => 'auth']);
+$routes->post('/karyawan/divisi/save', 'Karyawan/Divisi::save');
 
 
 

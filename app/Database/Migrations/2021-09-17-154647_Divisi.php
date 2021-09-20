@@ -22,16 +22,24 @@ class Divisi extends Migration
 			'updateby'       => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '100',
+			],
+			'created_at' => [
+				'type'           => 'DATETIME',
+				'null'       	 => true,
+			],
+			'updated_at' => [
+				'type'           => 'DATETIME',
+				'null'       	 => true,
 			]
  
 		]);
 		$this->forge->addPrimaryKey('iddivisi', true);
-		$this->forge->createTable('divisi');
+		$this->forge->createTable('tm_divisi');
 
     }
 
     public function down()
     {
-        $this->forge->dropTable('divisi');
+        $this->forge->dropTable('tm_divisi');
     }
 }
