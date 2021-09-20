@@ -10,16 +10,16 @@
 
   </head>
   <body>
-  
-  <?php if (!empty(session()->getFlashdata('error'))) : ?>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <?php echo session()->getFlashdata('error'); ?>
-            </div>
-        <?php endif; ?>
 
       <form class="box" action="/Login/process" method="post">
       <!-- <h1>Login Page</h1> -->
       <?= csrf_field(); ?>
+
+      <?php if (!empty(session()->getFlashdata('error'))) : ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+               <script>alert('<?=session()->getFlashdata('error'); ?>')</script>
+            </div>
+        <?php endif; ?>
 
 <div class="text-center">
   <img src="img/logo.png" class="rounded" alt="..." style="width: 200px;">

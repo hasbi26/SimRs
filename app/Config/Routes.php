@@ -31,16 +31,18 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Dashboard::index');
-$routes->get('/login', 'Login::index');
+$routes->get('/login', 'Login::index',['filter' => 'notLogout']);
 $routes->post('/login/process', 'Login::process');
+$routes->get('/dashboard', 'Dashboard::index',['filter' => 'auth']);
+$routes->get('/', 'Dashboard::index',['filter' => 'auth']);
+
 
 
 
 $routes->get('/register', 'Register::index');
 $routes->post('/register/process', 'Register::process');
 
-$routes->get('/about', 'Home::about');
+$routes->get('/about', 'Home::about',['filter' => 'auth']);
 
 $routes->delete('/komik/(:num)', 'Komik::delete/$1');
 
