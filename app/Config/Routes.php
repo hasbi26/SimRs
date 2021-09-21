@@ -40,6 +40,11 @@ $routes->get('/', 'Dashboard::index',['filter' => 'auth']);
 $routes->get('/divisi', 'Karyawan/Divisi::Divisi',['filter' => 'auth']);
 $routes->post('/karyawan/divisi/save', 'Karyawan/Divisi::save');
 
+//jabatan
+$routes->get('/jabatan', 'Karyawan/Jabatan::index',['filter' => 'auth']);
+$routes->get('/jabatan/get_data', 'Karyawan/Jabatan::get_data');
+
+
 
 
 $routes->get('/register', 'Register::index');

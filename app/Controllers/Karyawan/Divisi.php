@@ -48,17 +48,6 @@ class Divisi extends BaseController
              return redirect()->to('/divisi')->withInput();
         }
 
-
-
-
-
-
-
-
-
-
-
-
        $this->Divisi->save([
            'namadivisi' => $this->request->getVar('namaDivisi'),
            'created_by' =>  $_SESSION['name']

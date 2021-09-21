@@ -28,7 +28,7 @@
                       <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                       <li><a href="/about" class="link-dark rounded">Master Karyawan</a></li>
                       <li><a href="/divisi" class="link-dark rounded">Master Divisi</a></li>
-                      <li><a href="#" class="link-dark rounded">Master Jabatan</a></li>
+                      <li><a href="/jabatan" class="link-dark rounded">Master Jabatan</a></li>
                       <li><a href="#" class="link-dark rounded">Master User</a></li>
                       </ul>
                     </div>

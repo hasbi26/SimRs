@@ -9,7 +9,7 @@ class Divisi extends Migration
     public function up()
     {
         $this->forge->addField([
-			'iddivisi'          => [
+			'id'          => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
@@ -19,7 +19,7 @@ class Divisi extends Migration
 				'type'           => 'VARCHAR',
 				'constraint'     => '100',
 			],
-			'updateby'       => [
+			'updated_by'       => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '100',
 			],

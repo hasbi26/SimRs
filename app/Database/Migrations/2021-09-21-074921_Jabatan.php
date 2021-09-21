@@ -4,26 +4,26 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Alter extends Migration
+class Jabatan extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-			'iddivisi'          => [
+			'id'          => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
 			],
-			'namadivisi'       => [
+			'namajabatan'       => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '100',
 			],
-			'update_by'       => [
+			'created_by'       => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '100',
 			],
-            'created_by'       => [
+			'updated_by'       => [
 				'type'           => 'VARCHAR',
 				'constraint'     => '100',
 			],
@@ -37,13 +37,13 @@ class Alter extends Migration
 			]
  
 		]);
-		$this->forge->addPrimaryKey('iddivisi', true);
-		$this->forge->createTable('tm_divisi');
+		$this->forge->addPrimaryKey('id', true);
+		$this->forge->createTable('tm_jabatan');
 
     }
 
     public function down()
     {
-        $this->forge->dropTable('tm_divisi');
+        $this->forge->dropTable('tm_jabatan');
     }
 }
