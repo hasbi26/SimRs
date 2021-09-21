@@ -8,7 +8,7 @@ class KaryawanModel extends Model
 {
     // ...
     protected $table      = 'tm_divisi';
-    protected $useTimestamps = false;
-    protected $allowedFields = ['namadivisi'];
+    protected $useTimestamps = true;
+    protected $allowedFields = ['namadivisi', 'created_by', 'updated_by'];
 
 }
