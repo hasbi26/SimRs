@@ -1,18 +1,18 @@
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="TambahModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="TambahModalLabel">Tambah Data Divisi</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit"></i> Edit Products</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <?= form_open('jabatan/save_data', ['class' => 'form-add']); ?>
+            <?= form_open('/jabatan/update_data', ['class' => 'form-edit']); ?>
             <?= csrf_field(); ?>
             <div class="modal-body">
-
+                <input type="hidden" class="form-control" id="id" name="id" value="<?= $id; ?>">
                 <div class="form-group row">
                     <label for="labelname" class="col-sm-2 col-form-label">Nama Jabatan</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="idinputjabatan" name="name">
+                        <input type="text" class="form-control" id="name" name="name" value="<?= $name; ?>">
                         <div class="invalid-feedback errorName">
                         </div>
                     </div>
@@ -31,7 +31,7 @@
 
 <script>
     $(document).ready(function () {
-        $('.form-add').submit(function (e) {
+        $('.form-edit').submit(function (e) {
             e.preventDefault();
             $.ajax({
                 type: "post",
@@ -39,20 +39,20 @@
                 data: $(this).serialize(),
                 dataType: "json",
                 beforeSend: function () {
-                    $('.btn-save').attr('disable', 'disabled');
-                    $('.btn-save').html('<i class="fas fa-spin fa-spinner"></i>');
+                    $('.btn-update').attr('disable', 'disabled');
+                    $('.btn-update').html('<i class="fas fa-spin fa-spinner"></i>');
                 },
                 complete: function () {
-                    $('.btn-save').removeAttr('disable');
-                    $('.btn-save').html('Save');
+                    $('.btn-update').removeAttr('disable');
+                    $('.btn-update').html('Update');
                 },
                 success: function (response) {
                     if (response.error) {
                         if (response.error.name) {
-                            $('#idinputjabatan').addClass('is-invalid');
+                            $('#name').addClass('is-invalid');
                             $('.errorName').html(response.error.name);
                         } else {
-                            $('#idinputjabatan').removeClass('is-invalid');
+                            $('#name').removeClass('is-invalid');
                             $('.errorName').html('');
                         }
 
@@ -65,7 +65,7 @@
                             timer: 1800
                         })
 
-                        $('#addModal').modal('hide');
+                        $('#editModal').modal('hide');
                         getProducts();
                     }
                 },

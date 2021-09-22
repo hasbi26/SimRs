@@ -4,7 +4,7 @@ namespace App\Controllers\Karyawan;
 
 use App\Controllers\BaseController;
 
-use App\Models\KaryawanModel;
+use App\Models\DivisiModel;
 
 class Divisi extends BaseController
 {
@@ -13,7 +13,7 @@ class Divisi extends BaseController
         protected $Divisi;
         public function __construct()
         {
-            $this->Divisi = new KaryawanModel();
+            $this->Divisi = new DivisiModel();
         }
     
 
