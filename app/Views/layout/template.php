@@ -11,6 +11,11 @@
     
 <link href="/assets/dist/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <style>
       .bd-placeholder-img {
@@ -60,6 +65,9 @@
     </main>
   </div>
 </div>
+
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
 <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/dist/js/jquery-3.5.1.js"></script>
   <script src="/assets/dist/js/jquery.dataTables.min.js"></script>

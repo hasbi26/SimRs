@@ -33,6 +33,44 @@
     <div class="view-modal" style="display: none;"></div>
 
 
+    <script type="text/javascript">
+        // Function get product ajax
+        function getProducts() {
+            $.ajax({
+                url: "<?= base_url('/jabatan/get_data') ?>",
+                dataType: "json",
+                success: function(response) {
+                    $('.view-data').html(response.output);
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                }
+            })
+        }
+
+        // view output
+        $(document).ready(function() {
+            getProducts();
+
+            $('.add-modal').click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: "<?= base_url('jabatan/get_modal'); ?>",
+                    dataType: "json",
+                    success: function(response) {
+                        $('.view-modal').html(response.output).show();
+
+                        $('#addModal').modal('show')
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                    }
+                });
+            });
+        });
+    </script>
+
+
 
 
 <?= $this->endSection(); ?>
