@@ -63,7 +63,6 @@
 
 
     <script src="/assets/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/dist/js/jquery-3.5.1.js"></script>
     <script src="/assets/dist/js/jquery.dataTables.min.js"></script>
     <script src="/assets/sidebars/sidebars.js"></script>
 

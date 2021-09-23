@@ -49,6 +49,12 @@ $routes->post('/jabatan/get_modal_edit', 'Karyawan/Jabatan::get_modal_edit');
 $routes->post('/jabatan/update_data', 'Karyawan/Jabatan::update_data');
 $routes->post('/jabatan/delete_data', 'Karyawan/Jabatan::delete_data');
 
+$routes->get('/karyawan', 'Karyawan/Karyawan::index',['filter' => 'auth']);
+$routes->get('/karyawan/get_data', 'Karyawan/Karyawan::get_data');
+$routes->get('/karyawan/get_modal', 'Karyawan/Karyawan::get_modal');
+$routes->post('/karyawan/save_data', 'Karyawan/Karyawan::save_data');
+
+
 
 
 
