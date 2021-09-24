@@ -5,10 +5,9 @@
                 <h5 class="modal-title" id="TambahModalLabel">Tambah Data Karyawan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <?= form_open('karyawan/save_data', ['class' => 'form-add']); ?>
+            <?= form_open_multipart('karyawan/save_data', ['class' => 'form-add']);  ?>
             <?= csrf_field(); ?>
             <div class="modal-body">
-
                 <div class="row">
                     <div class="col-sm 6">
 
@@ -16,7 +15,7 @@
                             <label for="labelname" class="col-sm-3 col-form-label">Nik</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="nik" name="nik">
-                                <div class="invalid-feedback errorName">
+                                <div class="invalid-feedback errorNik">
                                 </div>
                             </div>
                         </div>
@@ -34,29 +33,41 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Jabatan</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="jabatan" name="jabatan">
-                                <div class="invalid-feedback errorName">
+                                <select class="form-select form-select-sm" name="jabatan" id="jabatan" aria-label="form-select-sm example">
+                                    <option value="" selected>Pilih jabatan</option>
+                                    <?php foreach($datajabatan as $datajabatan):?>
+                                    <option value="<?= $datajabatan['id']?>" ><?= $datajabatan['namajabatan'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <div class="invalid-feedback errorJabatan">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group row mb-1">
+                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Divisi</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="divisi" name="divisi">
-                                <div class="invalid-feedback errorName">
+                            <select class="form-select form-select-sm" name="divisi" id="divisi" aria-label="form-select-sm example">
+                                    <option value="" selected>Pilih Divisi</option>
+                                    <?php foreach($datadivisi as $datadivisi):?>
+                                    <option value="<?= $datadivisi['id']?>"><?= $datadivisi['namadivisi'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                                <div class="invalid-feedback errorDivisi">
                                 </div>
                             </div>
-                        </div>
+                        </div> 
 
                         <div class="form-group row mb-1">
-                            <label for="labelname" class="col-sm-3 col-form-label">Jenis Kelamin</label>
+                            <label for="labelname" class="col-sm-3 col-form-label"  >Jenis Kelamin</label>
                             <div class="col-sm-8">
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>Pilih Jenis Kelamin</option>
+                                <select class="form-select form-select-sm" name="jeniskelamin" id="jeniskelamin" aria-label="form-select-sm example">
+                                    <option value="" selected>Pilih Jenis Kelamin</option>
                                     <option value="Pria">Pria</option>
                                     <option value="Wanita">Wanita</option>
                                 </select>
+                                <div class="invalid-feedback errorJeniskelamin">
+                                </div>
                             </div>
                         </div>
 
@@ -64,7 +75,7 @@
                             <label for="labelname" class="col-sm-3 col-form-label">Tempat Lahir</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="tempatlahir" name="tempatlahir">
-                                <div class="invalid-feedback errorName">
+                                <div class="invalid-feedback errorTempatlahir">
                                 </div>
                             </div>
                         </div>
@@ -73,7 +84,7 @@
                             <label for="labelname" class="col-sm-3 col-form-label">Tanggal Lahir</label>
                             <div class="col-sm-8">
                                 <input type="date" class="form-control" id="tanggallahir" name="tanggallahir">
-                                <div class="invalid-feedback errorName">
+                                <div class="invalid-feedback errorTanggallahir">
                                 </div>
                             </div>
                         </div>
@@ -82,7 +93,7 @@
                             <label for="labelname" class="col-sm-3 col-form-label">Tanggal Masuk</label>
                             <div class="col-sm-8">
                                 <input type="date" class="form-control" id="tanggalmasuk" name="tanggalmasuk">
-                                <div class="invalid-feedback errorName">
+                                <div class="invalid-feedback errorTanggalmasuk">
                                 </div>
                             </div>
                         </div>
@@ -95,8 +106,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
 
 
@@ -106,8 +115,8 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Status</label>
                             <div class="col-sm-8">
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                    <option selected>Pilih Status</option>
+                                <select class="form-select form-select-sm" name="status" id="status" aria-label=".form-select-sm example">
+                                    <option value ="" selected>Pilih Status</option>
                                     <option value="Menikah">Menikah</option>
                                     <option value="Lajang">Lajang</option>
                                     <option value="Bercerai">Bercerai</option>
@@ -118,8 +127,8 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Telepon</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="tempatlahir" name="tempatlahir">
-                                <div class="invalid-feedback errorName">
+                                <input type="text" class="form-control" id="telepon" name="telepon">
+                                <div class="invalid-feedback errorTelepon">
                                 </div>
                             </div>
                         </div>
@@ -128,15 +137,17 @@
                             <label for="labelname" class="col-sm-3 col-form-label">Alamat</label>
                             <div class="col-sm-8">
                                 <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
-                                <div class="invalid-feedback errorName">
+                                <div class="invalid-feedback errorAlamat">
                                 </div>
                             </div>
                         </div>
 
 
                         <div class="mb-3">
-                            <label for="formFileSm" class="form-label">Upload Foto</label>
-                            <input class="form-control form-control-sm" id="formFileSm" type="file">
+                            <label for="poto" class="form-label">Upload Foto</label>
+                            <input class="form-control " id="poto"  name="poto" type="file" >
+                            <div class="invalid-feedback errorPoto">
+                                </div>
                         </div>
                     </div>
 
@@ -178,10 +189,10 @@
                     if (response.error) {
                         if (response.error.nik) {
                             $('#nik').addClass('is-invalid');
-                            $('.errorName').html(response.error.nik);
+                            $('.errorNik').html(response.error.nik);
                         } else {
                             $('#nik').removeClass('is-invalid');
-                            $('.errorName').html('');
+                            $('.errorNik').html('');
                         }
                         if (response.error.namakaryawan) {
                             $('#namakaryawan').addClass('is-invalid');
@@ -189,6 +200,69 @@
                         } else {
                             $('#namakaryawan').removeClass('is-invalid');
                             $('.errorName').html('');
+                        }
+                        if (response.error.jabatan) {
+                            $('#jabatan').addClass('is-invalid');
+                            $('.errorJabatan').html(response.error.jabatan);
+                        } else {
+                            $('#jabatan').removeClass('is-invalid');
+                            $('.errorJabatan').html('');
+                        }
+                        if (response.error.divisi) {
+                            $('#divisi').addClass('is-invalid');
+                            $('.errorDivisi').html(response.error.divisi);
+                        } else {
+                            $('#divisi').removeClass('is-invalid');
+                            $('.errorDivisi').html('');
+                        }
+                        if (response.error.jeniskelamin) {
+                            $('#jeniskelamin').addClass('is-invalid');
+                            $('.errorJeniskelamin').html(response.error.jeniskelamin);
+                        } else {
+                            $('#jeniskelamin').removeClass('is-invalid');
+                            $('.errorJeniskelamin').html('');
+                        }
+                        if (response.error.tempatlahir) {
+                            $('#tempatlahir').addClass('is-invalid');
+                            $('.errorTempatlahir').html(response.error.tempatlahir);
+                        } else {
+                            $('#tempatlahir').removeClass('is-invalid');
+                            $('.errorTempatlahir').html('');
+                        }
+                        if (response.error.tanggallahir) {
+                            $('#tanggallahir').addClass('is-invalid');
+                            $('.errorTanggallahir').html(response.error.tanggallahir);
+                        } else {
+                            $('#tanggallahir').removeClass('is-invalid');
+                            $('.errorTanggallahir').html('');
+                        }
+                        if (response.error.tanggalmasuk) {
+                            $('#tanggalmasuk').addClass('is-invalid');
+                            $('.errorTanggalmasuk').html(response.error.tanggalmasuk);
+                        } else {
+                            $('#tanggalmasuk').removeClass('is-invalid');
+                            $('.errorTanggalmasuk').html('');
+                        } if (response.error.telepon) {
+                            $('#telepon').addClass('is-invalid');
+                            $('.errorTelepon').html(response.error.telepon);
+                        } else {
+                            $('#telepon').removeClass('is-invalid');
+                            $('.errorTelepon').html('');
+                        }
+                        if (response.error.alamat) {
+                            $('#alamat').addClass('is-invalid');
+                            $('.errorAlamat').html(response.error.alamat);
+                        } else {
+                            $('#alamat').removeClass('is-invalid');
+                            $('.errorAlamat').html('');
+                        }
+                        if (response.error.poto) {
+                            console.log("ee")                            
+                            $('#poto').addClass('is-invalid');
+                            $('.errorPoto').html(response.error.poto);
+                        } else {
+                            $('#poto').removeClass('is-invalid');
+                            $('.errorPoto').html('');
                         }
 
                     } else {
