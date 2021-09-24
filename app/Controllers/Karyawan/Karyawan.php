@@ -67,13 +67,9 @@ class Karyawan extends BaseController
         }
 
         public function save_data()
-	{
+	{ 
+        // helper(['form', 'url']);
 
-        
-        
-        
-        
-        
         if ($this->request->isAJAX()) {
             $validation = \Config\Services::validation();
             
@@ -120,12 +116,10 @@ class Karyawan extends BaseController
                 ],
                 'poto' => [
                     'label' => 'Foto',
-					'rules' => 'uploaded[poto]',
+					'rules' => 'uploaded[poto]|max_size[poto,500]|is_image[poto]|mime_in[poto,image/jpg,image/jpeg,image/png]',
                     ]
+                
                 ]);
-                
-
-                
                 
                 if (!$rules) {
                     $result = [
@@ -146,19 +140,14 @@ class Karyawan extends BaseController
                         ];
                     } else {
                         
-                        // ambil file poto
-                        $filepoto = $this->request->getFile('poto');
-                
-                        // 'console.log($filepoto)'
-                
-                        var_dump($filepoto);
-                        // die();
-                
+                        $file = $this->request->getFile('poto');
+
                         // pindahkan ke img
-                        $filepoto->move('img/potokaryawan');
+                        $file->move('img/fotokaryawan');
                 
                         //ambilnamafile
-                        $namapoto = $filepoto->getClientName();
+                
+                        $namapoto = $file->getName();
 
 				$this->Karyawan->insert([    
 					'nik' => strip_tags($this->request->getPost('nik')),
