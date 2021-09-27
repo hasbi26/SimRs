@@ -1,4 +1,4 @@
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="TambahModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="TambahModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl ">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,8 +14,8 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Nik</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nik" name="nik">
-                                <div class="invalid-feedback errorNik">
+                                <input type="text" class="form-control" id="nik" name="nik" value="<?= $nik; ?>">
+                                <div class=" invalid-feedback errorNik">
                                 </div>
                             </div>
                         </div>
@@ -24,7 +24,8 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Nama Karyawan</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="namakaryawan" name="namakaryawan">
+                                <input type="text" class="form-control" id="namakaryawan" name="namakaryawan"
+                                    value="<?= $name; ?>">
                                 <div class="invalid-feedback errorName">
                                 </div>
                             </div>
@@ -35,9 +36,12 @@
                             <div class="col-sm-8">
                                 <select class="form-select form-select-sm" name="jabatan" id="jabatan"
                                     aria-label="form-select-sm example">
-                                    <option value="" selected>Pilih jabatan</option>
+
                                     <?php foreach($datajabatan as $datajabatan):?>
-                                    <option value="<?= $datajabatan['id']?>"><?= $datajabatan['namajabatan'] ?></option>
+                                    <option <?php if ($datajabatan['id'] == $idjabatan )
+                                        {echo 'selected="selected"' ;} ?> value="<?= $datajabatan['id']; ?>">
+                                        <?=$datajabatan['namajabatan'] ?></option>
+
                                     <?php endforeach; ?>
                                 </select>
                                 <div class="invalid-feedback errorJabatan">
@@ -45,14 +49,16 @@
                             </div>
                         </div>
 
+
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Divisi</label>
                             <div class="col-sm-8">
                                 <select class="form-select form-select-sm" name="divisi" id="divisi"
                                     aria-label="form-select-sm example">
-                                    <option value="" selected>Pilih Divisi</option>
                                     <?php foreach($datadivisi as $datadivisi):?>
-                                    <option value="<?= $datadivisi['id']?>"><?= $datadivisi['namadivisi'] ?></option>
+                                    <option <?php if ($datadivisi['id'] == $iddivisi )
+                                        {echo 'selected="selected"' ;} ?> value="<?= $datadivisi['id']; ?>">
+                                        <?=$datadivisi['namadivisi'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <div class="invalid-feedback errorDivisi">
@@ -65,7 +71,6 @@
                             <div class="col-sm-8">
                                 <select class="form-select form-select-sm" name="jeniskelamin" id="jeniskelamin"
                                     aria-label="form-select-sm example">
-                                    <option value="" selected>Pilih Jenis Kelamin</option>
                                     <option value="Pria">Pria</option>
                                     <option value="Wanita">Wanita</option>
                                 </select>
@@ -302,7 +307,7 @@
                             timer: 1800
                         })
 
-                        $('#addModal').modal('hide');
+                        $('#editModal').modal('hide');
                         getProducts();
                     }
                 },

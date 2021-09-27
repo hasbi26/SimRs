@@ -185,8 +185,13 @@ class Karyawan extends BaseController
     $row = $this->Karyawan->find($id);
 
     $data = [
-    'id' => $row['id'],
+    'nik' => $row['nik'],
     'name' => $row['namakaryawan'],
+    'jeniskelamin' => $row['jeniskelamin'],
+    'iddivisi' => $row['iddivisi'],
+    'idjabatan' => $row['idjabatan'],
+    'datajabatan' => $this->Jabatan->findAll(),
+    'datadivisi' => $this->Divisi->findAll()
     ];
 
     $result = [
@@ -195,7 +200,7 @@ class Karyawan extends BaseController
 
     echo json_encode($result);
     } else {
-    exit('404 Not Found');
+    exit('4041 Not Found');
     }
     }
 
