@@ -175,6 +175,68 @@ class Karyawan extends BaseController
 			exit('404 Not Found');
 		}
 	}
+
+
+    public function get_modal_edit()
+    {
+    if ($this->request->isAJAX()) {
+    $id = $this->request->getVar('id');
+
+    $row = $this->Karyawan->find($id);
+
+    $data = [
+    'id' => $row['id'],
+    'name' => $row['namakaryawan'],
+    ];
+
+    $result = [
+    'output' => view('karyawan/karyawan/view_modal_edit', $data)
+    ];
+
+    echo json_encode($result);
+    } else {
+    exit('404 Not Found');
+    }
+    }
+
+    
+    public function update_data()
+        {
+        if ($this->request->isAJAX()) {
+        $validation = \Config\Services::validation();
+
+        $rules = $this->validate([
+        'name' => [
+        'label' => 'nama jabatan',
+        'rules' => 'required|min_length[3]|is_unique[tm_jabatan.namajabatan]',
+        ]
+        ]);
+
+        if (!$rules) {
+        $result = [
+        'error' => [
+        'name' => $validation->getError('name'),
+        ]
+        ];
+        } else {
+        $id = $this->request->getPost('id');
+        $this->Jabatan->update($id, [
+        'namajabatan' => strip_tags($this->request->getPost('name')),
+        'updated_by' => $_SESSION['name']
+        ]);
+
+        $result = [
+        'success' => 'Data has been updated from database'
+        ];
+        }
+        echo json_encode($result);
+        } else {
+        exit('404 Not Found');
+        }
+    }
+
+
+
     
 
 

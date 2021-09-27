@@ -46,7 +46,7 @@
     function edit(id) {
         $.ajax({
             type: "post",
-            url: "<?= base_url('/jabatan/get_modal_edit'); ?>",
+            url: "<?= base_url('/karyawan/get_modal_edit'); ?>",
             data: {
                 id: id
             },

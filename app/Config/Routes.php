@@ -53,6 +53,7 @@ $routes->get('/karyawan', 'Karyawan/Karyawan::index',['filter' => 'auth']);
 $routes->get('/karyawan/get_data', 'Karyawan/Karyawan::get_data');
 $routes->get('/karyawan/get_modal', 'Karyawan/Karyawan::get_modal');
 $routes->post('/karyawan/save_data', 'Karyawan/Karyawan::save_data');
+$routes->get('/karyawan/get_modal_edit', 'Karyawan/Karyawan::get_modal_edit');
 
 
 
