@@ -32,10 +32,32 @@ class Karyawan extends BaseController
 
         public function get_data()
         {
+            $db      = \Config\Database::connect();
             if ($this->request->isAJAX()) {
+
+                $builder = $db->table('tm_karyawan');
+                $builder->select('*');
+                $builder->join('tm_divisi', 'tm_divisi.id = tm_karyawan.iddivisi');
+                $builder->join('tm_jabatan', 'tm_jabatan.id = tm_karyawan.idjabatan');
+                $query = $builder->get();
+
+
+                foreach ($query->getResult() as $row) {
+                    echo $row->namakaryawan;
+                    echo $row->namajabatan;
+                    echo $row->namadivisi;
+                }
+
+
+                // var_dump($query);
+
                 $data = [
-                    'data' => $this->Karyawan->findAll()
+                    'data' => $this->Karyawan->findAll(),
+                    // 'datajoin' => 
                 ];
+
+                // $data = $que
+
     
                 $result = [
                     'output' => view('karyawan/karyawan/view_data', $data)
@@ -116,7 +138,7 @@ class Karyawan extends BaseController
                 ],
                 'poto' => [
                     'label' => 'Foto',
-					'rules' => 'uploaded[poto]|max_size[poto,500]|is_image[poto]|mime_in[poto,image/jpg,image/jpeg,image/png]',
+					'rules' => 'max_size[poto,500]|is_image[poto]|mime_in[poto,image/jpg,image/jpeg,image/png]',
                     ]
                 
                 ]);
@@ -134,20 +156,24 @@ class Karyawan extends BaseController
                             'tanggalmasuk' => $validation->getError('tanggalmasuk'),
                             'telepon' => $validation->getError('telepon'),
                             'alamat' => $validation->getError('alamat'),
-                            'poto' => $validation->getError('poto'),
-                            
+                            'poto' => $validation->getError('poto'), 
                             ]
                         ];
                     } else {
                         
                         $file = $this->request->getFile('poto');
 
-                        // pindahkan ke img
-                        $file->move('img/fotokaryawan');
-                
-                        //ambilnamafile
-                
-                        $namapoto = $file->getName();
+                        //cek gambar ada di upload
+                        if ($file->getError() == 4)
+                        {
+                            $namapoto = 'default.jpg';
+                        } else {
+                            // pindahkan ke img
+                            $file->move('img/fotokaryawan');
+                            //ambilnamafile
+                            $namapoto = $file->getName();
+                        }
+
 
 				$this->Karyawan->insert([    
 					'nik' => strip_tags($this->request->getPost('nik')),
@@ -185,11 +211,22 @@ class Karyawan extends BaseController
     $row = $this->Karyawan->find($id);
 
     $data = [
+    'id' => $row['id'],
     'nik' => $row['nik'],
     'name' => $row['namakaryawan'],
     'jeniskelamin' => $row['jeniskelamin'],
     'iddivisi' => $row['iddivisi'],
     'idjabatan' => $row['idjabatan'],
+    'jk' => ['Pria', 'Wanita'],
+    'tempatlahir' => $row['tempatlahir'],
+    'tanggallahir' => $row['tanggallahir'],
+    'tanggalmasuk' => $row['tanggalmasuk'],
+    'tanggalkeluar' => $row['tanggalkeluar'],
+    'statusmenikah' => $row['statusmenikah'],
+    'statusList' => ['Menikah','Lajang', 'Bercerai'],
+    'telepon' => $row['telepon'],
+    'alamat' => $row['alamat'],
+    'poto' => $row['poto'],
     'datajabatan' => $this->Jabatan->findAll(),
     'datadivisi' => $this->Divisi->findAll()
     ];
@@ -209,25 +246,97 @@ class Karyawan extends BaseController
         {
         if ($this->request->isAJAX()) {
         $validation = \Config\Services::validation();
-
         $rules = $this->validate([
-        'name' => [
-        'label' => 'nama jabatan',
-        'rules' => 'required|min_length[3]|is_unique[tm_jabatan.namajabatan]',
-        ]
-        ]);
-
+            'nik' => [
+                'label' => 'Nik',
+                'rules' => 'required|min_length[3]|is_unique[tm_karyawan.nik,id,{id}]',
+            ],
+            'namakaryawan' => [
+                'label' => 'Nama Karyawan',
+                'rules' => 'required',
+            ],
+            'jabatan' => [
+                'label' => 'Jabatan',
+                'rules' => 'required',
+            ],
+            'divisi' => [
+                'label' => 'Divisi',
+                'rules' => 'required',
+            ],
+            'jeniskelamin' => [
+                'label' => 'Jenis Kelamin',
+                'rules' => 'required',
+            ],
+            'tempatlahir' => [
+                'label' => 'Tempat Lahir',
+                'rules' => 'required',
+            ],
+            'tanggallahir' => [
+                'label' => 'Tanggal Lahir',
+                'rules' => 'required',
+            ],
+            'tanggalmasuk' => [
+                'label' => 'Tanggal Masuk',
+                'rules' => 'required',
+            ],
+            'telepon' => [
+                'label' => 'Telepon',
+                'rules' => 'required',
+            ],
+            'alamat' => [
+                'label' => 'Telepon',
+                'rules' => 'required',
+            ],
+            'poto' => [
+                'label' => 'Foto',
+                'rules' => 'max_size[poto,500]|is_image[poto]|mime_in[poto,image/jpg,image/jpeg,image/png]',
+                ]
+            
+            ]);
         if (!$rules) {
         $result = [
         'error' => [
-        'name' => $validation->getError('name'),
+            'nik' => $validation->getError('nik'),
+            'namakaryawan' => $validation->getError('namakaryawan'),
+            'jabatan' => $validation->getError('jabatan'),
+            'divisi' => $validation->getError('divisi'),
+            'jeniskelamin' => $validation->getError('jeniskelamin'),
+            'tempatlahir' => $validation->getError('tempatlahir'),
+            'tanggallahir' => $validation->getError('tanggallahir'),
+            'tanggalmasuk' => $validation->getError('tanggalmasuk'),
+            'telepon' => $validation->getError('telepon'),
+            'alamat' => $validation->getError('alamat'),
+            'poto' => $validation->getError('poto'), 
         ]
         ];
         } else {
+            $file = $this->request->getFile('poto');
+            //cek gambar ada di upload
+            if ($file->getError() == 4) // cek jika gambar tidak di upload bakal error 4
+            {
+                $namapoto = $this->request->getVar("potolama");
+            } else {
+                // pindahkan ke img
+                $file->move('img/fotokaryawan');
+                //ambilnamafile
+                $namapoto = $file->getName();
+            }
         $id = $this->request->getPost('id');
-        $this->Jabatan->update($id, [
-        'namajabatan' => strip_tags($this->request->getPost('name')),
-        'updated_by' => $_SESSION['name']
+        $this->Karyawan->update($id, [
+            'nik' => strip_tags($this->request->getPost('nik')),
+            'namakaryawan' => strip_tags($this->request->getPost('namakaryawan')),
+            'idjabatan' => strip_tags($this->request->getPost('jabatan')),
+            'iddivisi' => strip_tags($this->request->getPost('divisi')),
+            'jeniskelamin' => strip_tags($this->request->getPost('jeniskelamin')),
+            'tempatlahir' => strip_tags($this->request->getPost('tempatlahir')),
+            'tanggallahir' => strip_tags($this->request->getPost('tanggallahir')),
+            'tanggalmasuk' => strip_tags($this->request->getPost('tanggalmasuk')),
+            'tanggalkeluar' => strip_tags(($this->request->getPost('tanggalkeluar') == 0000-00-00 ? null : ($this->request->getPost('tanggalkeluar')))),
+            'statusmenikah' => strip_tags($this->request->getPost('status')),
+            'telepon' => strip_tags($this->request->getPost('telepon')),
+            'alamat' => strip_tags($this->request->getPost('alamat')),
+            'poto' => $namapoto,
+            'updated_by' => $_SESSION['name']
         ]);
 
         $result = [
@@ -240,9 +349,34 @@ class Karyawan extends BaseController
         }
     }
 
+    public function delete_data()
+    {
+        if ($this->request->isAJAX()) {
+            $id = $this->request->getVar('id');
+
+            //cari namagambar berdasarkan id
+
+            $namapoto = $this->Karyawan->find($id);
+
+            //cek jika nama foto bukan default
+
+            if ($namapoto['poto'] != 'default.jpg'){
+                //hapusgambar
+                unlink('img/fotokaryawan/'.$namapoto['poto']);
+            }
+            $this->Karyawan->delete($id);
+
+            $result = [
+                'output' => "Data has been deleted from database"
+            ];
+
+            echo json_encode($result);
+        } else {
+            exit('404 Not Found');
+        }
+    }
 
 
-    
 
 
 }

@@ -151,7 +151,7 @@
 
                         <div class="form-group row mb-3">
                             <label for="poto" class="form-label">Upload Foto</label>
-                            <input class="form-control " id="poto" name="poto" type="file" required
+                            <input class="form-control" title=" " id="poto" name="poto" type="file"
                                 onchange="previewImageFile(event)" accept="image/*">
                             <div class="invalid-feedback errorPoto">
                             </div>

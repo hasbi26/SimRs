@@ -5,12 +5,12 @@
                 <h5 class="modal-title" id="TambahModalLabel">Edit Data Karyawan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <?= form_open_multipart('karyawan/save_data', ['class' => 'form-add']);  ?>
+            <?= form_open_multipart('karyawan/update_data', ['class' => 'form-add']);  ?>
             <?= csrf_field(); ?>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm 6">
-
+                        <input type="hidden" name="id" value="<?=$id?>">
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Nik</label>
                             <div class="col-sm-8">
@@ -71,8 +71,11 @@
                             <div class="col-sm-8">
                                 <select class="form-select form-select-sm" name="jeniskelamin" id="jeniskelamin"
                                     aria-label="form-select-sm example">
-                                    <option value="Pria">Pria</option>
-                                    <option value="Wanita">Wanita</option>
+                                    <?php foreach($jk as $jks):?>
+                                    <option <?php if ($jks == $jeniskelamin )
+                                        {echo 'selected="selected"' ;} ?> value="<?= $jks; ?>">
+                                        <?=$jks ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                                 <div class="invalid-feedback errorJeniskelamin">
                                 </div>
@@ -82,7 +85,8 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Tempat Lahir</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="tempatlahir" name="tempatlahir">
+                                <input type="text" class="form-control" id="tempatlahir" name="tempatlahir"
+                                    value="<?= $tempatlahir;?>">
                                 <div class="invalid-feedback errorTempatlahir">
                                 </div>
                             </div>
@@ -91,7 +95,8 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Tanggal Lahir</label>
                             <div class="col-sm-8">
-                                <input type="date" class="form-control" id="tanggallahir" name="tanggallahir">
+                                <input type="date" class="form-control" id="tanggallahir" name="tanggallahir"
+                                    value="<?=$tanggallahir?>">
                                 <div class="invalid-feedback errorTanggallahir">
                                 </div>
                             </div>
@@ -100,7 +105,8 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Tanggal Masuk</label>
                             <div class="col-sm-8">
-                                <input type="date" class="form-control" id="tanggalmasuk" name="tanggalmasuk">
+                                <input type="date" class="form-control" id="tanggalmasuk" name="tanggalmasuk"
+                                    value="<?=$tanggalmasuk?>">
                                 <div class="invalid-feedback errorTanggalmasuk">
                                 </div>
                             </div>
@@ -124,11 +130,17 @@
                             <label for="labelname" class="col-sm-3 col-form-label">Status</label>
                             <div class="col-sm-8">
                                 <select class="form-select form-select-sm" name="status" id="status"
-                                    aria-label=".form-select-sm example">
+                                    aria-label=".form-select-sm example"><?php if ($statusmenikah) : ?>
+                                    <?php foreach ($statusList as $statusLists):?>
+                                    <option <?php if($statusLists == $statusmenikah) {echo 'selected="selected"';} ?>
+                                        value="<?=$statusLists?>"><?=$statusLists?></option>
+                                    <?php endforeach?>
+                                    <?php else : ?>
                                     <option value="" selected>Pilih Status</option>
                                     <option value="Menikah">Menikah</option>
                                     <option value="Lajang">Lajang</option>
                                     <option value="Bercerai">Bercerai</option>
+                                    <?php endif?>
                                 </select>
                             </div>
                         </div>
@@ -136,7 +148,8 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Telepon</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="telepon" name="telepon">
+                                <input type="text" class="form-control" id="telepon" name="telepon"
+                                    value="<?=$telepon?>">
                                 <div class="invalid-feedback errorTelepon">
                                 </div>
                             </div>
@@ -145,29 +158,28 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Alamat</label>
                             <div class="col-sm-8">
-                                <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
+                                <textarea class="form-control" id="alamat" name="alamat"
+                                    rows="3"><?=$alamat?></textarea>
                                 <div class="invalid-feedback errorAlamat">
                                 </div>
                             </div>
                         </div>
 
-
-
-
                         <div class="form-group row mb-3">
                             <label for="poto" class="form-label">Upload Foto</label>
-                            <input class="form-control " id="poto" name="poto" type="file" required
-                                onchange="previewImageFile(event)" accept="image/*">
+                            <input class="form-control " id="poto" name="poto" type="file"
+                                onchange="previewImageFile(event)" accept="image/*" value="<?=$poto;?>">
                             <div class="invalid-feedback errorPoto">
                             </div>
                         </div>
-
+                        <input type="hidden" name="potolama" value="<?=$poto?>">
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Preview</label>
                             <div class="col-sm-8">
 
-                                <img src="" alt="Image preview" id="preview-image" class="hideme"
-                                    style=" width : 100px">
+                                <img <?php if ($poto == "default.jpg") :?> src="/img/<?=$poto;?>" <?php  else : ?>
+                                    src="/img/fotokaryawan/<?=$poto;?>" <?php endif?> alt="Image preview"
+                                    id="preview-image" style=" width : 100px">
 
                             </div>
                         </div>

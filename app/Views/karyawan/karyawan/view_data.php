@@ -4,7 +4,7 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>id</th>
+                <th>nik</th>
                 <th>Nama Karyawan</th>
                 <th>id jabatan</th>
                 <th>id divisi</th>
@@ -15,10 +15,10 @@
         <tbody>
 
             <?php $no = 1;
-                foreach ($data as $datas) : ?>
+                foreach ($datajoin as $datas) : ?>
             <tr>
                 <td width="1%"><?= $no++; ?></td>
-                <td><?= esc($datas['id']); ?></td>
+                <td><?= esc($datas['nik']); ?></td>
                 <td><?= esc($datas['namakaryawan']); ?></td>
                 <td><?= esc($datas['idjabatan']); ?></td>
                 <td><?= esc($datas['iddivisi']); ?></td>
@@ -77,7 +77,7 @@
             if (result.value) {
                 $.ajax({
                     type: "post",
-                    url: "<?= base_url('/jabatan/delete_data'); ?>",
+                    url: "<?= base_url('/karyawan/delete_data'); ?>",
                     data: {
                         id: id
                     },

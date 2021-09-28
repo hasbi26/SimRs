@@ -54,6 +54,10 @@ $routes->get('/karyawan/get_data', 'Karyawan/Karyawan::get_data');
 $routes->get('/karyawan/get_modal', 'Karyawan/Karyawan::get_modal');
 $routes->post('/karyawan/save_data', 'Karyawan/Karyawan::save_data');
 $routes->post('/karyawan/get_modal_edit', 'Karyawan/Karyawan::get_modal_edit');
+$routes->post('/karyawan/update_data', 'Karyawan/Karyawan::update_data');
+$routes->post('/karyawan/delete_data', 'Karyawan/Karyawan::delete_data');
+
+
 
 
 
