@@ -15,11 +15,13 @@ class Karyawan extends BaseController
         // konstruktor
         protected $Karyawan;
         protected $Jabatan;
+        private $db;
         public function __construct()
         {
             $this->Karyawan = new KaryawanModel();
             $this->Jabatan = new JabatanModel();
             $this->Divisi = new DivisiModel();
+            $this->db = db_connect();
         }
 
         public function index(){
@@ -32,28 +34,18 @@ class Karyawan extends BaseController
 
         public function get_data()
         {
-            $db      = \Config\Database::connect();
+            // $db = \Config\Database::connect();
             if ($this->request->isAJAX()) {
 
-                $builder = $db->table('tm_karyawan');
-                $builder->select('*');
-                $builder->join('tm_divisi', 'tm_divisi.id = tm_karyawan.iddivisi');
-                $builder->join('tm_jabatan', 'tm_jabatan.id = tm_karyawan.idjabatan');
-                $query = $builder->get();
-
-
-                foreach ($query->getResult() as $row) {
-                    echo $row->namakaryawan;
-                    echo $row->namajabatan;
-                    echo $row->namadivisi;
-                }
-
-
-                // var_dump($query);
+                $builder = $this->db->table("tm_karyawan as karyawan");
+                                    $builder->select('karyawan.*, divisi.namadivisi as nama_divisi, jabatan.namajabatan as nama_jabatan');
+                                    $builder->join('tm_divisi as divisi', 'karyawan.iddivisi = divisi.id');
+                                    $builder->join('tm_jabatan as jabatan', 'karyawan.idjabatan = jabatan.id');
+                        $dataku = $builder->get()->getResult();
 
                 $data = [
                     'data' => $this->Karyawan->findAll(),
-                    // 'datajoin' => 
+                    'datajoin' => $dataku
                 ];
 
                 // $data = $que
@@ -62,7 +54,7 @@ class Karyawan extends BaseController
                 $result = [
                     'output' => view('karyawan/karyawan/view_data', $data)
                 ];
-                echo json_encode($result);
+                echo json_encode($result,true);
             } else {
                 exit('404 Not Found');
             }

@@ -4,31 +4,34 @@
         <thead>
             <tr>
                 <th>No</th>
-                <th>nik</th>
+                <th>Nik</th>
                 <th>Nama Karyawan</th>
-                <th>id jabatan</th>
-                <th>id divisi</th>
+                <th>Jabatan</th>
+                <th>Divisi</th>
                 <th>jenis kelamin</th>
                 <th>action</th>
             </tr>
         </thead>
         <tbody>
 
+    <!-- <?= d($datajoin)?> -->
+
+
             <?php $no = 1;
                 foreach ($datajoin as $datas) : ?>
             <tr>
                 <td width="1%"><?= $no++; ?></td>
-                <td><?= esc($datas['nik']); ?></td>
-                <td><?= esc($datas['namakaryawan']); ?></td>
-                <td><?= esc($datas['idjabatan']); ?></td>
-                <td><?= esc($datas['iddivisi']); ?></td>
-                <td><?= esc($datas['jeniskelamin']); ?></td>
+                <td><?= esc($datas->nik); ?></td>
+                <td><?= esc($datas->namakaryawan); ?></td>
+                <td><?= esc($datas->nama_jabatan); ?></td>
+                <td><?= esc($datas->nama_divisi); ?></td>
+                <td><?= esc($datas->jeniskelamin); ?></td>
                 <td class="text-center" width="20%">
-                    <button class="btn btn-success btn-sm mb-1" onclick="edit('<?= $datas['id']; ?>')">
+                    <button class="btn btn-success btn-sm mb-1" onclick="edit('<?= $datas->id; ?>')">
                         Update
                     </button>
 
-                    <button class="btn btn-danger btn-sm mb-1" onclick="deletes('<?= $datas['id']; ?>')">
+                    <button class="btn btn-danger btn-sm mb-1" onclick="deletes('<?= $datas->id; ?>')">
                         Delete
                     </button>
                 </td>
