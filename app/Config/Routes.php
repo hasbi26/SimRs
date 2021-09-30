@@ -59,6 +59,56 @@ $routes->post('/karyawan/delete_data', 'Karyawan/Karyawan::delete_data');
 
 
 
+// apotek
+
+//jenis
+$routes->get('/apotik/jenis', 'Apotik/JenisObat::index',['filter' => 'auth']);
+$routes->get('/apotik/jenis/get_data', 'Apotik/JenisObat::get_data');
+$routes->get('/apotik/jenis/get_modal', 'Apotik/JenisObat::get_modal');
+$routes->post('/apotik/jenis/save_data', 'Apotik/JenisObat::save_data');
+$routes->post('/apotik/jenis/get_modal_edit', 'Apotik/JenisObat::get_modal_edit');
+$routes->post('/apotik/jenis/update_data', 'Apotik/JenisObat::update_data');
+$routes->post('/apotik/jenis/delete_data', 'Apotik/JenisObat::delete_data');
+
+//satuan
+$routes->get('/apotik/satuan', 'Apotik/SatuanObat::index',['filter' => 'auth']);
+$routes->get('/apotik/satuan/get_data', 'Apotik/SatuanObat::get_data');
+$routes->get('/apotik/satuan/get_modal', 'Apotik/SatuanObat::get_modal');
+$routes->post('/apotik/satuan/save_data', 'Apotik/SatuanObat::save_data');
+$routes->post('/apotik/satuan/get_modal_edit', 'Apotik/SatuanObat::get_modal_edit');
+$routes->post('/apotik/satuan/update_data', 'Apotik/SatuanObat::update_data');
+$routes->post('/apotik/satuan/delete_data', 'Apotik/SatuanObat::delete_data');
+
+//kategori
+$routes->get('/apotik/kategori', 'Apotik/KategoriObat::index',['filter' => 'auth']);
+$routes->get('/apotik/kategori/get_data', 'Apotik/KategoriObat::get_data');
+$routes->get('/apotik/kategori/get_modal', 'Apotik/KategoriObat::get_modal');
+$routes->post('/apotik/kategori/save_data', 'Apotik/KategoriObat::save_data');
+$routes->post('/apotik/kategori/get_modal_edit', 'Apotik/KategoriObat::get_modal_edit');
+$routes->post('/apotik/kategori/update_data', 'Apotik/KategoriObat::update_data');
+$routes->post('/apotik/kategori/delete_data', 'Apotik/KategoriObat::delete_data');
+
+//golongan/
+$routes->get('/apotik/golongan', 'Apotik/GolonganObat::index',['filter' => 'auth']);
+$routes->get('/apotik/golongan/get_data', 'Apotik/GolonganObat::get_data');
+$routes->get('/apotik/golongan/get_modal', 'Apotik/GolonganObat::get_modal');
+$routes->post('/apotik/golongan/save_data', 'Apotik/GolonganObat::save_data');
+$routes->post('/apotik/golongan/get_modal_edit', 'Apotik/GolonganObat::get_modal_edit');
+$routes->post('/apotik/golongan/update_data', 'Apotik/GolonganObat::update_data');
+$routes->post('/apotik/golongan/delete_data', 'Apotik/GolonganObat::delete_data');
+
+//suplier/
+$routes->get('/apotik/suplier', 'Apotik/SuplierObat::index',['filter' => 'auth']);
+$routes->get('/apotik/suplier/get_data', 'Apotik/SuplierObat::get_data');
+$routes->get('/apotik/suplier/get_modal', 'Apotik/SuplierObat::get_modal');
+$routes->post('/apotik/suplier/save_data', 'Apotik/SuplierObat::save_data');
+$routes->post('/apotik/suplier/get_modal_edit', 'Apotik/SuplierObat::get_modal_edit');
+$routes->post('/apotik/suplier/update_data', 'Apotik/SuplierObat::update_data');
+$routes->post('/apotik/suplier/delete_data', 'Apotik/SuplierObat::delete_data');
+
+
+
+
 
 
 

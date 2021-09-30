@@ -13,7 +13,9 @@
                     data</a>
             </div>
             <div class="card-body">
+                <!-- <a href="" class="btn btn-primary btn-sm mb-2 add-modal"><i class="fas fa-plus-square"></i> Add data</a> -->
 
+                <!-- Get Data -->
                 <div class="table-responsive view-data">
 
                 </div>
@@ -30,7 +32,7 @@
     // Function get product ajax
     function getProducts() {
         $.ajax({
-            url: "<?= base_url('/jabatan/get_data') ?>",
+            url: "<?= base_url('/apotik/suplier/get_data') ?>",
             dataType: "json",
             success: function (response) {
                 $('.view-data').html(response.output);
@@ -48,7 +50,7 @@
         $('.add-modal').click(function (e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= base_url('jabatan/get_modal'); ?>",
+                url: "<?= base_url('/apotik/suplier/get_modal'); ?>",
                 dataType: "json",
                 success: function (response) {
                     $('.view-modal').html(response.output).show();

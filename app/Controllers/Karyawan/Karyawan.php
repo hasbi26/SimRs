@@ -308,6 +308,22 @@ class Karyawan extends BaseController
             {
                 $namapoto = $this->request->getVar("potolama");
             } else {
+
+
+                $id = $this->request->getVar('id');
+
+                //cari namagambar berdasarkan id
+    
+                $namapotolama = $this->Karyawan->find($id);
+    
+                //cek jika nama foto bukan default
+    
+                if ($namapotolama['poto'] != 'default.jpg'){
+                    //hapusgambar
+                    unlink('img/fotokaryawan/'.$namapotolama['poto']);
+                }
+
+
                 // pindahkan ke img
                 $file->move('img/fotokaryawan');
                 //ambilnamafile

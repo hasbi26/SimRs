@@ -51,6 +51,27 @@
 
               <!-- end of aset -->
 
+              <!-- apotik  -->
+
+              <li><button class="btn btn-sm btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                  data-bs-target="#Apotik" aria-expanded="false">
+                  Apotik
+                </button>
+                <div class="collapse" id="Apotik">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="#" class="link-dark rounded">Master Obat</a></li>
+                    <li><a href="/apotik/jenis" class="link-dark rounded">Master Jenis Obat</a></li>
+                    <li><a href="/apotik/satuan" class="link-dark rounded">Master Satuan Obat</a></li>
+                    <li><a href="/apotik/suplier" class="link-dark rounded">Master Suplier Obat</a></li>
+                    <li><a href="/apotik/golongan" class="link-dark rounded">Master Golongan Obat</a></li>
+                    <li><a href="/apotik/kategori" class="link-dark rounded">Master Kategori Obat</a></li>
+                  </ul>
+                </div>
+              </li>
+
+
+              <!-- end of apotik -->
+
 
 
               <li><a href="/test" class="link-dark rounded">Test</a></li>
