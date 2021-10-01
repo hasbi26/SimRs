@@ -59,7 +59,7 @@
                 </button>
                 <div class="collapse" id="Apotik">
                   <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                    <li><a href="#" class="link-dark rounded">Master Obat</a></li>
+                    <li><a href="/apotik/obat" class="link-dark rounded">Master Obat</a></li>
                     <li><a href="/apotik/jenis" class="link-dark rounded">Master Jenis Obat</a></li>
                     <li><a href="/apotik/satuan" class="link-dark rounded">Master Satuan Obat</a></li>
                     <li><a href="/apotik/suplier" class="link-dark rounded">Master Suplier Obat</a></li>
