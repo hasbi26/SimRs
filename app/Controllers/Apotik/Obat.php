@@ -42,7 +42,11 @@ class Obat extends BaseController
 
 
             $builder = $this->db->table("tm_obat as obat");
-            $builder->select('obat.*');
+            $builder->select('obat.*,golongan.namagolonganobat as namagolongan, jenis.namajenisobat as namajenis, kategori.namakategoriobat as namakategori, satuan.namasatuanobat as namasatuan');
+            $builder->join('tm_golongan_obat as golongan', 'obat.golongan = golongan.id');
+            $builder->join('tm_jenis_obat as jenis', 'obat.jenis = jenis.id');
+            $builder->join('tm_kategori_obat as kategori', 'obat.kategori = kategori.id');
+            $builder->join('tm_satuan_obat as satuan', 'obat.satuan = satuan.id');
             $dataku = $builder->get()->getResult();
 
 			$data = [
@@ -231,11 +235,12 @@ class Obat extends BaseController
         $rules = $this->validate([
             'kodeobat' => [
                 'label' => 'Kode Obat',
-                'rules' => 'required|is_unique[tm_obat.kodeobat]',
+                'rules' => 'required|is_unique[tm_obat.kodeobat,id,{id}]',
+
             ],
             'namaobat' => [
                 'label' => 'Nama Obat',
-                'rules' => 'required|is_unique[tm_obat.namaobat]',
+                'rules' => 'required|is_unique[tm_obat.namaobat,id,{id}]',
             ],
             'golongan' => [
                 'label' => 'Golongan',
@@ -345,6 +350,17 @@ class Obat extends BaseController
         if ($this->request->isAJAX()) {
             $id = $this->request->getVar('id');
 
+            //cari namagambar berdasarkan id
+
+            $namapoto = $this->Obat->find($id);
+
+            //cek jika nama foto bukan default
+
+            if ($namapoto['potoobat'] != 'default.jpg'){
+                //hapusgambar
+                unlink('img/fotoobat/'.$namapoto['potoobat']);
+            }
+
             $this->Obat->delete($id);
 
             $result = [
@@ -355,6 +371,15 @@ class Obat extends BaseController
         } else {
             exit('404 Not Found');
         }
+    }
+
+
+    public function pembelian() {
+        $data = [
+            'title' => 'Data Pembelian'
+        ];
+        return view ('apotik/pembelian/index', $data);
+
     }
 
 

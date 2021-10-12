@@ -5,7 +5,7 @@
                 <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit"></i> Edit Obat</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <?= form_open_multipart('/apotik/obat/update_data', ['class' => 'form-add']);   ?>
+            <?= form_open_multipart('/apotik/obat/update_data', ['class' => 'form-edit']);   ?>
             <?= csrf_field(); ?>
             <div class="modal-body">
                 <div class="row">
@@ -214,7 +214,6 @@
                 data: formData,
                 processData: false,
                 contentType: false,
-                data: $(this).serialize(),
                 dataType: "json",
                 beforeSend: function () {
                     $('.btn-update').attr('disable', 'disabled');

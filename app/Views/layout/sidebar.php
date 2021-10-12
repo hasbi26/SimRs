@@ -84,6 +84,26 @@
             data-bs-target="#dashboard-collapse" aria-expanded="false">
             Transaksi Data
           </button>
+
+
+
+          <li><button class="btn btn-sm btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
+                  data-bs-target="#TrApotik" aria-expanded="false">
+                  Apotik
+                </button>
+                <div class="collapse" id="TrApotik">
+                  <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                    <li><a href="/apotik/obat/pembelian" class="link-dark rounded">Pembelian Obat</a></li>
+                    <li><a href="/apotik/jenis" class="link-dark rounded">Penjualan Obat</a></li>
+                    <li><a href="/apotik/satuan" class="link-dark rounded">Retur Obat</a></li>
+                  </ul>
+                </div>
+              </li>
+
+
+
+
+
           <div class="collapse" id="dashboard-collapse">
             <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ">
               <li><a href="#" class="link-dark rounded">Overview</a></li>

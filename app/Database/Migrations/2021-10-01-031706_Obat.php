@@ -40,7 +40,7 @@ class Obat extends Migration
 				'constraint'     => '200',
 			],
             'tanggalexpire'       => [
-				'type'           => 'DATETIME',
+				'type'           => 'DATE',
 				'null'       	 => true,
 			],
             'minimalstok'       => [

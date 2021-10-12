@@ -9,6 +9,7 @@
                 <th>Golongan</th>
                 <th>Kategori</th>
                 <th>Jenis </th>
+                <th>Satuan </th>
                 <th>Tanggal Expire</th>
                 <th>Action</th>
             </tr>
@@ -21,9 +22,10 @@
                 <td width="1%"><?= $no++; ?></td>
                 <td><?= $datas->kodeobat ?></td>
                 <td><?= $datas->namaobat?></td>
-                <td><?= $datas->golongan?></td>
-                <td><?= $datas->kategori?></td>
-                <td><?= $datas->jenis?></td>
+                <td><?= $datas->namagolongan?></td>
+                <td><?= $datas->namakategori?></td>
+                <td><?= $datas->namajenis?></td>
+                <td><?= $datas->namasatuan?></td>
                 <td><?= $datas->tanggalexpire?></td>
                 <td class="text-center" width="20%">
                     <button class="btn btn-success btn-sm mb-1" onclick="edit('<?= $datas->id ?>')">

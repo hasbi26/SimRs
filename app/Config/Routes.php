@@ -115,6 +115,9 @@ $routes->post('/apotik/obat/save_data', 'Apotik/Obat::save_data');
 $routes->post('/apotik/obat/get_modal_edit', 'Apotik/Obat::get_modal_edit');
 $routes->post('/apotik/obat/update_data', 'Apotik/Obat::update_data');
 $routes->post('/apotik/obat/delete_data', 'Apotik/Obat::delete_data');
+//transaksi obat
+$routes->get('/apotik/obat/pembelian', 'Apotik/Obat::pembelian',['filter' => 'auth']);
+
 
 
 
