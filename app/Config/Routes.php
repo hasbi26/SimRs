@@ -115,8 +115,17 @@ $routes->post('/apotik/obat/save_data', 'Apotik/Obat::save_data');
 $routes->post('/apotik/obat/get_modal_edit', 'Apotik/Obat::get_modal_edit');
 $routes->post('/apotik/obat/update_data', 'Apotik/Obat::update_data');
 $routes->post('/apotik/obat/delete_data', 'Apotik/Obat::delete_data');
+
 //transaksi obat
-$routes->get('/apotik/obat/pembelian', 'Apotik/Obat::pembelian',['filter' => 'auth']);
+$routes->get('/apotik/pembelian/obat', 'Apotik/PembelianObat::index',['filter' => 'auth']);
+$routes->get('/apotik/pembelian/get_data', 'Apotik/PembelianObat::get_data');
+$routes->get('/apotik/pembelian/get_modal', 'Apotik/PembelianObat::get_modal');
+$routes->post('/apotik/pembelian/save_data', 'Apotik/PembelianObat::save_data');
+$routes->get('/apotik/obat/select2obat', 'Apotik/Obat::Select2Obat');
+
+
+
+
 
 
 

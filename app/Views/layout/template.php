@@ -12,6 +12,8 @@
     <script src="/assets/dist/js/jquery-3.5.1.js"></script>
     <link href="/assets/dist/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/dist/css/select2.min.css" rel="stylesheet" />
+
     <script src="/assets/dist/js/sweetalert2.all.min.js"></script>
 
     <style>
@@ -75,6 +77,7 @@
     <!-- chart -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script> -->
     <script src="/assets/dist/js/dashboard.js"></script>
+    <script src="/assets/dist/js/select2.min.js"></script>
   </body>
 
 </html>

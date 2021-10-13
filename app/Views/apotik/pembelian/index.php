@@ -32,7 +32,7 @@
     // Function get product ajax
     function getProducts() {
         $.ajax({
-            url: "<?= base_url('/apotik/obat/get_data') ?>",
+            url: "<?= base_url('/apotik/pembelian/get_data') ?>",
             dataType: "json",
             success: function (response) {
                 $('.view-data').html(response.output);
@@ -50,7 +50,7 @@
         $('.add-modal').click(function (e) {
             e.preventDefault();
             $.ajax({
-                url: "<?= base_url('/apotik/obat/get_modal'); ?>",
+                url: "<?= base_url('/apotik/pembelian/get_modal'); ?>",
                 dataType: "json",
                 success: function (response) {
                     $('.view-modal').html(response.output).show();

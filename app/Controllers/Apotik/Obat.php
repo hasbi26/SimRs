@@ -373,15 +373,54 @@ class Obat extends BaseController
         }
     }
 
+    public function Select2Obat()
+    {
+        if ($this->request->isAJAX()) {
+            $request = service('request');
+            $postData = $request->getPost();
 
-    public function pembelian() {
-        $data = [
-            'title' => 'Data Pembelian'
-        ];
-        return view ('apotik/pembelian/index', $data);
+            $data = [];
+            $response = [];
+
+            $db      = \Config\Database::connect();
+            $builder = $db->table('tm_obat');  
+            $obat = [];
+            
+            if (isset($postData['query'])){
+                $query = $postData['query'];
+
+                $builder->select('*');
+                $builder->like('namaobat', $query, 'both');
+                $builder->orlike('kodeobat', $query, 'both');
+                $query = $builder->get();
+                $data = $query->getResult();
+            } else {
+                $builder->select('*');
+                $query = $builder->get();
+                $data = $query->getResult();
+            }
+
+            foreach($data as $obats) {
+                $obat[] = array(
+                    "id" => $obats->id,
+                    "text" => $obats->kodeobat . ' - ' . $obats->namaobat,
+                );
+            }
+            $response['data'] = $obat;
+
+            //return $this->response->setJson($response);
+    
+            // $query = $builder->like('namaobat', $this->request->getVar('q'))
+            //             ->select('id, namaobat as text, kodeobat as kode')
+            //             ->limit(10)->get();
+            // $data = $query->getResult();
+
+			 echo json_encode($response);
+		} else {
+			exit('404 Not Found');
+		}
 
     }
-
 
 
 }
