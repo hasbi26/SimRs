@@ -1,6 +1,3 @@
-
-
-
 <div class="table-responsive">
     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"
         style="border-top: 2px solid black;">
@@ -107,17 +104,16 @@
 
 
     $('.search').select2({
-    placeholder: 'Select or Add',
-  ajax: {
-    url: '/apotik/obat/select2obat',
-    dataType: 'json',
-    delay: 250,
-          processResults: function(data){
-            return {
-              results: data
-            };
-          },
-          cache: true
-  }
-});
+        ajax: {
+            url: '/apotik/obat/select2obat',
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: data
+                };
+            },
+            cache: true
+        }
+    });
 </script>

@@ -79,11 +79,10 @@
                                 </select>
                             </div>
                             <div class="col">
-                                <!-- <form id="myForm1">
-
+                                <form id="myForm1">
                                     <button type="submit" form="myForm1" class="btn-sm btn-success" onclick="fun()">+
                                         Tambah </button>
-                                </form> -->
+                                </form>
                             </div>
                         </div>
 
@@ -91,6 +90,13 @@
 
                     <div class="col-sm 4"></div>
 
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p></p>
+                        <div id="table"></div>
+
+                    </div>
                 </div>
 
             </div>
@@ -238,6 +244,59 @@
     });
 
     function fun() {
-        console.log("asdk")
+        var id = $('#search').val()
+        var text = $('#search').select2('data')[0]['text'];
+        console.log(id)
+        if (id != 0) {
+            console.log("id = ", id, "oldid =", sessionStorage.getItem('idobat' + id))
+            if (sessionStorage.getItem('idobat' + id) !== null) {
+                console.log("sudah ada")
+            } else {
+                console.log("belum ada")
+                sessionStorage.setItem('idobat' + id, id);
+
+                var table = createTable(id, text);
+                document.getElementById("table").innerHTML = table;
+            }
+        }
+    }
+
+
+
+
+
+    function createTable(a, b) {
+        var jumlah = 10;
+        var row = 2;
+        var total = jumlah;
+        var table = "<table class='table table-striped'>";
+        table += "<tr>";
+        table += "<th><center>No</center></th>";
+        table += "<th><center>Nama</center></th>";
+        table += "<th><center>Harga</center></th>";
+        table += "<th><center>Jumlah</center></th>";
+        table += "<th><center>Total</center></th>";
+        table += "</tr>";
+        table += "<tr>";
+        table += "<td><center> 1 </center></td>";
+        table += "<td><center> " + b + " </center></td>";
+        table +=
+            "<td><center> <input type='number' min='0' id='harga' onchange='calculateStuff();' > </center></td>";
+        table += "<td><center> <input type='number' min='0' id='jumlah' onchange='calculateStuff();' > </center></td>";
+        table += "<td><center> <input type='number' id='total' disabled ></center></td>";
+        table += "</tr>";
+        table += "</table>";
+
+        return table;
+
+    }
+
+    function calculateStuff() {
+        let harga = $('#harga').val()
+        let jumlah = $('#jumlah').val()
+        let total = parseInt(jumlah) * parseInt(harga)
+        $('#total').val(total)
+
+
     }
 </script>
