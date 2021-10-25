@@ -80,7 +80,8 @@
                             </div>
                             <div class="col">
                                 <form id="myForm1">
-                                    <button type="submit" form="myForm1" class="btn-sm btn-success" onclick="fun()">+
+                                    <button type="submit" form="myForm1" class="btn-sm btn-success"
+                                        onclick="cobaTambah()">+
                                         Tambah </button>
                                 </form>
                             </div>
@@ -95,6 +96,26 @@
                     <div class="col">
                         <p></p>
                         <div id="table"></div>
+
+                        <table class='table table-striped'>
+                            <thead>
+                                <tr>
+
+                                    <td>no</td>
+                                    <td>id Obat</td>
+                                    <td>nama</td>
+                                    <td>jumlah</td>
+                                    <td>total</td>
+                                </tr>
+                            </thead>
+                            <tbody class="load_content">
+                                <tr>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
 
                     </div>
                 </div>
@@ -111,7 +132,7 @@
 
 
 
-<script>
+<script defer>
     $(document).ready(function () {
         $('.form-add').submit(function (e) {
             e.preventDefault();
@@ -141,62 +162,8 @@
                             $('#kodeobat').removeClass('is-invalid');
                             $('.errorKodeobat').html('');
                         }
-                        if (response.error.namaobat) {
-                            $('#namaobat').addClass('is-invalid');
-                            $('.errorNamaobat').html(response.error.namaobat);
-                        } else {
-                            $('#namaobat').removeClass('is-invalid');
-                            $('.errorNamaobat').html('');
-                        }
-                        if (response.error.golongan) {
-                            $('#golongan').addClass('is-invalid');
-                            $('.errorGolongan').html(response.error.golongan);
-                        } else {
-                            $('#golongan').removeClass('is-invalid');
-                            $('.errorGolongan').html('');
-                        }
-                        if (response.error.kategori) {
-                            $('#kategori').addClass('is-invalid');
-                            $('.errorKategori').html(response.error.kategori);
-                        } else {
-                            $('#kategori').removeClass('is-invalid');
-                            $('.errorKategori').html('');
-                        }
-                        if (response.error.jenis) {
-                            $('#jenis').addClass('is-invalid');
-                            $('.errorJenis').html(response.error.jenis);
-                        } else {
-                            $('#jenis').removeClass('is-invalid');
-                            $('.errorJenis').html('');
-                        }
-                        if (response.error.satuan) {
-                            $('#satuan').addClass('is-invalid');
-                            $('.errorSatuan').html(response.error.satuan);
-                        } else {
-                            $('#satuan').removeClass('is-invalid');
-                            $('.errorSatuan').html('');
-                        }
-                        if (response.error.tanggalexpire) {
-                            $('#tanggalexpire').addClass('is-invalid');
-                            $('.errorTanggalexpire').html(response.error.tanggalexpire);
-                        } else {
-                            $('#tanggalexpire').removeClass('is-invalid');
-                            $('.errorTanggalexpire').html('');
-                        }
-                        if (response.error.minimalstok) {
-                            $('#minimalstok').addClass('is-invalid');
-                            $('.errorMinimalstok').html(response.error.minimalstok);
-                        } else {
-                            $('#minimalstok').removeClass('is-invalid');
-                            $('.errorMinimalstok').html('');
-                        }
-                        if (response.error.poto) {
-                            $('#poto').addClass('is-invalid');
-                            $('.errorPoto').html(response.error.poto);
-                        } else {
-                            $('#poto').removeClass('is-invalid');
-                            $('.errorPoto').html('');
-                        }
+
+
 
                     } else {
                         Swal.fire({
@@ -248,16 +215,76 @@
         var text = $('#search').select2('data')[0]['text'];
         console.log(id)
         if (id != 0) {
-            console.log("id = ", id, "oldid =", sessionStorage.getItem('idobat' + id))
+            // console.log("id = ", id, "oldid =", sessionStorage.getItem('idobat' + id))
             if (sessionStorage.getItem('idobat' + id) !== null) {
-                console.log("sudah ada")
+                // console.log("sudah ada")
             } else {
-                console.log("belum ada")
+                // console.log("belum ada")
                 sessionStorage.setItem('idobat' + id, id);
-
                 var table = createTable(id, text);
                 document.getElementById("table").innerHTML = table;
+                cobaTambah();
             }
+        }
+    }
+
+
+    var nomor = 1;
+    const obatArr = [];
+    let index = 0;
+    const oBatObject = [{
+        // id: null,
+        // namaObat: null
+    }]
+
+    function cobaTambah() {
+
+
+        var text = $('#search').select2('data')[0]['text'];
+        var textsplit = text.split("-", 2)
+        var idObat = textsplit[0];
+        console.log("id nya", idObat)
+        var namaObat = textsplit[1];
+        const load = document.querySelector('.load_content');
+        const row = document.createElement("tr");
+        const no = document.createElement("td");
+        const id = document.createElement("td");
+        const nama = document.createElement("td");
+
+        load.appendChild(row);
+        load.appendChild(no);
+        load.appendChild(id)
+        load.appendChild(nama);
+
+        if ($('#search').val() != 0) {
+
+            const text_nama = document.createTextNode(namaObat)
+            const text_id = document.createTextNode(idObat)
+            const text_no = document.createTextNode(nomor)
+
+            no.appendChild(text_no)
+            id.appendChild(text_id);
+            nama.appendChild(text_nama)
+
+            let Objekobat = {
+                id: idObat,
+                namaObat: namaObat
+            }
+
+            oBatObject.unshift(Objekobat)
+
+
+            for (let i = 0; i < oBatObject.length; i++) {
+                console.log("objeck", oBatObject[i], oBatObject.length)
+            }
+
+            obatArr[index] = text;
+            nomor++
+            index++
+        }
+
+        for (let i = 0; i < obatArr.length; i++) {
+            console.log(obatArr[i], obatArr.length)
         }
     }
 
@@ -270,6 +297,7 @@
         var row = 2;
         var total = jumlah;
         var table = "<table class='table table-striped'>";
+        table += "<tbody class='load_content' >"
         table += "<tr>";
         table += "<th><center>No</center></th>";
         table += "<th><center>Nama</center></th>";
@@ -282,9 +310,11 @@
         table += "<td><center> " + b + " </center></td>";
         table +=
             "<td><center> <input type='number' min='0' id='harga' onchange='calculateStuff();' > </center></td>";
-        table += "<td><center> <input type='number' min='0' id='jumlah' onchange='calculateStuff();' > </center></td>";
+        table +=
+            "<td><center> <input type='number' min='0' id='jumlah' onchange='calculateStuff();' > </center></td>";
         table += "<td><center> <input type='number' id='total' disabled ></center></td>";
         table += "</tr>";
+        table += "</tbody>"
         table += "</table>";
 
         return table;
@@ -296,6 +326,54 @@
         let jumlah = $('#jumlah').val()
         let total = parseInt(jumlah) * parseInt(harga)
         $('#total').val(total)
+
+
+    }
+
+    // let jml = 1;
+
+    function tambahInput() {
+        const load = document.querySelector('.load_content');
+        const row = document.createElement("tr");
+        const nik = document.createElement("td");
+        const nama = document.createElement("td");
+        const alamat = document.createElement("td");
+        const action = document.createElement("td");
+
+        //memasukan elemen ke tabel body
+
+        console.log(load);
+
+        load.appendChild(row);
+        load.appendChild(nik);
+        load.appendChild(nama);
+        load.appendChild(alamat);
+        load.appendChild(action);
+
+        // membuat text 
+        const text_nik = document.createElement("input");
+        text_nik.setAttribute("type", 'text');
+        text_nik.setAttribute("id", "nik[" + jml + "]");
+        text_nik.setAttribute("placeholder", "masukan nik");
+
+        const text_nama = document.createElement("input");
+        text_nama.setAttribute("type", 'text');
+        text_nama.setAttribute("name", "nama");
+        text_nama.setAttribute("id", "nama");
+        text_nama.setAttribute("class", "form-control");
+
+
+        console.log("ini text_nama", text_nama)
+
+
+        //memasukan text nik ke dalam nik
+
+        nik.appendChild(text_nik);
+        nama.appendChild(text_nama);
+        // console.log("knt")
+
+        jml++;
+
 
 
     }
