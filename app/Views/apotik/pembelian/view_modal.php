@@ -229,13 +229,12 @@
     }
 
 
+    // const obj = {}
+    const objArr = []
     var nomor = 1;
-    const obatArr = [];
     let index = 0;
-    const oBatObject = [{
-        // id: null,
-        // namaObat: null
-    }]
+    // const objObat = [{}]
+
 
     function cobaTambah() {
 
@@ -243,7 +242,7 @@
         var text = $('#search').select2('data')[0]['text'];
         var textsplit = text.split("-", 2)
         var idObat = textsplit[0];
-        console.log("id nya", idObat)
+        // console.log("id nya", idObat)
         var namaObat = textsplit[1];
         const load = document.querySelector('.load_content');
         const row = document.createElement("tr");
@@ -270,22 +269,77 @@
                 id: idObat,
                 namaObat: namaObat
             }
+            let result
 
-            oBatObject.unshift(Objekobat)
+            (!result) ? result = false: result
 
+            console.log("lengeht", objArr.length)
 
-            for (let i = 0; i < oBatObject.length; i++) {
-                console.log("objeck", oBatObject[i], oBatObject.length)
+            for (let i = 0; i < objArr.length; i++) {
+                console.log(objArr[i].id.includes(Objekobat.id))
+                result = objArr[i].id.includes(Objekobat.id)
+                // break
+                // if (Objekobat.id === objArr[i].id) {
+                //     // console.log("iki sama", Objekobat.id, objArr[i].id)
+                // }
             }
 
-            obatArr[index] = text;
+            console.log("resultnya", result)
+
+            if (result === false) {
+                console.log("Data masuk")
+                objArr.push(Objekobat)
+            } else {
+                console.log("Data jangan masuk")
+            }
+            console.log("si objArr", objArr)
+
+
+
+
+
+            // objObat.push(Objekobat)
+
+            // console.log("nama obat = ", namaObat)
+
+            // console.log(objObat.some(e => e.namaObat))
+
+            // console.log(objObat.some(e => e.namaObat === " Betadine"), e => e.namaObat)
+            // console.log(objObat.some(e => e.namaObat === namaObat))
+
+            // console.log("e ini apa?", (e) => {
+            //     e.namaObat
+            // })
+
+            // console.log(e => e.Objekobat.namaObat)
+            //objObat.forEach((e) => {
+            //     if (e.namaObat === " Betadine") {
+            //         console.log("ketemu")
+            //     }
+            //     console.log("hasilna", e.id)
+            // })
+
+            // objObat.forEach((e) => {
+
+            //     //console.log(e.id)
+            // })
+
+            // console.log("hasil =", objObat[1].id)
+
+
+
+            // for (let i = 0; i < oBatObject.length; i++) {
+            //     console.log("objeck", oBatObject[i], oBatObject.length)
+            // }
+
+
             nomor++
             index++
         }
 
-        for (let i = 0; i < obatArr.length; i++) {
-            console.log(obatArr[i], obatArr.length)
-        }
+        // for (let i = 0; i < obatArr.length; i++) {
+        //     console.log(obatArr[i], obatArr.length)
+        // }
     }
 
 
