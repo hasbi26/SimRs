@@ -105,6 +105,7 @@
                                     <td>id Obat</td>
                                     <td>nama</td>
                                     <td>jumlah</td>
+                                    <td>harga</td>
                                     <td>total</td>
                                 </tr>
                             </thead>
@@ -230,9 +231,9 @@
 
 
     // const obj = {}
-    const objArr = []
+    let objArr = []
     var nomor = 1;
-    let index = 0;
+    // let index = 0;
     // const objObat = [{}]
 
 
@@ -249,97 +250,72 @@
         const no = document.createElement("td");
         const id = document.createElement("td");
         const nama = document.createElement("td");
+        const jumlah = document.createElement("td");
+        const harga = document.createElement("td");
+        const total = document.createElement("td");
 
-        load.appendChild(row);
-        load.appendChild(no);
-        load.appendChild(id)
-        load.appendChild(nama);
-
+        
         if ($('#search').val() != 0) {
-
-            const text_nama = document.createTextNode(namaObat)
-            const text_id = document.createTextNode(idObat)
-            const text_no = document.createTextNode(nomor)
-
-            no.appendChild(text_no)
-            id.appendChild(text_id);
-            nama.appendChild(text_nama)
 
             let Objekobat = {
                 id: idObat,
                 namaObat: namaObat
             }
-            let result
-
-            (!result) ? result = false: result
-
-            console.log("lengeht", objArr.length)
-
+            
+            let result = false            
             for (let i = 0; i < objArr.length; i++) {
                 console.log(objArr[i].id.includes(Objekobat.id))
                 result = objArr[i].id.includes(Objekobat.id)
-                // break
-                // if (Objekobat.id === objArr[i].id) {
-                //     // console.log("iki sama", Objekobat.id, objArr[i].id)
-                // }
-            }
+                if (result === true)
+                break
+                }
+                
+                if (result === false){
 
-            console.log("resultnya", result)
+                    load.appendChild(row);
+                    load.appendChild(no);
+                    load.appendChild(id)
+                    load.appendChild(nama);
+                    load.appendChild(jumlah)
+                    load.appendChild(harga)
+                    load.appendChild(total)
+                    
+                    const text_nama = document.createTextNode(namaObat)
+                    const text_id = document.createTextNode(idObat)
+                    const text_no = document.createTextNode(nomor)
+                    const input_jumlah = document.createElement("input")
+                    input_jumlah.className = "form-control";
+                    input_jumlah.type = "number";
+                    input_jumlah.min= "0";
+                    input_jumlah.style.textAlign = "center";
 
-            if (result === false) {
-                console.log("Data masuk")
-                objArr.push(Objekobat)
-            } else {
-                console.log("Data jangan masuk")
-            }
-            console.log("si objArr", objArr)
+                    const input_harga = document.createElement("input")
+                    input_harga.className = "form-control";
+                    input_harga.type = "number";
+                    input_harga.min= "0";
+                    input_harga.style.textAlign = "center";
 
+                    const input_total = document.createElement("input")
+                    input_total.className = "form-control";
+                    input_total.type = "number";
+                    input_total.min= "0";
+                    input_total.style.textAlign = "center";
+                    input_total.disabled
 
-
-
-
-            // objObat.push(Objekobat)
-
-            // console.log("nama obat = ", namaObat)
-
-            // console.log(objObat.some(e => e.namaObat))
-
-            // console.log(objObat.some(e => e.namaObat === " Betadine"), e => e.namaObat)
-            // console.log(objObat.some(e => e.namaObat === namaObat))
-
-            // console.log("e ini apa?", (e) => {
-            //     e.namaObat
-            // })
-
-            // console.log(e => e.Objekobat.namaObat)
-            //objObat.forEach((e) => {
-            //     if (e.namaObat === " Betadine") {
-            //         console.log("ketemu")
-            //     }
-            //     console.log("hasilna", e.id)
-            // })
-
-            // objObat.forEach((e) => {
-
-            //     //console.log(e.id)
-            // })
-
-            // console.log("hasil =", objObat[1].id)
-
-
-
-            // for (let i = 0; i < oBatObject.length; i++) {
-            //     console.log("objeck", oBatObject[i], oBatObject.length)
-            // }
-
-
-            nomor++
-            index++
+                    
+                    no.appendChild(text_no)
+                    id.appendChild(text_id);
+                    nama.appendChild(text_nama)
+                    jumlah.appendChild(input_jumlah);
+                    harga.appendChild(input_harga);
+                    total.appendChild(input_total);
+                    objArr.push(Objekobat)
+        
+                    console.log("data masuk =", objArr)
+                    nomor++
+                }
         }
 
-        // for (let i = 0; i < obatArr.length; i++) {
-        //     console.log(obatArr[i], obatArr.length)
-        // }
     }
 
 
