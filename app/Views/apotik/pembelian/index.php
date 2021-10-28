@@ -47,6 +47,7 @@
     $(document).ready(function () {
         getProducts();
 
+
         $('.add-modal').click(function (e) {
             e.preventDefault();
             $.ajax({
@@ -55,6 +56,10 @@
                 success: function (response) {
                     $('.view-modal').html(response.output).show();
 
+                    $('#addModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    })
                     $('#addModal').modal('show')
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
