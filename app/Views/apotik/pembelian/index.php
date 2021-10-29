@@ -10,7 +10,8 @@
             <div class="card-header">
                 <i class="fas fa-table mr-1"></i>
                 <a href="" class="btn btn-primary btn-sm mb-2 add-modal"><i class="fas fa-plus-square"></i> Add
-                    data</a>
+                    data
+                </a>
             </div>
             <div class="card-body">
                 <!-- <a href="" class="btn btn-primary btn-sm mb-2 add-modal"><i class="fas fa-plus-square"></i> Add data</a> -->

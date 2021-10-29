@@ -11,8 +11,8 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm 6">
-
                         <div class="form-group row mb-1">
+
                             <label for="labelname" class="col-sm-3 col-form-label">No Faktur</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="kodeobat" name="kodeobat">
@@ -97,23 +97,23 @@
                         <p></p>
                         <div id="table"></div>
 
-                        <table class='table table-striped'>
+                        <table class='table table-bordered' id="tabelpembelian">
                             <thead>
-                                <tr>
+                                <!-- <tr> -->
 
-                                    <td>no</td>
-                                    <td>actions</td>
-                                    <td>id Obat</td>
-                                    <td>nama</td>
-                                    <td>jumlah</td>
-                                    <td>harga</td>
-                                    <td>total</td>
-                                </tr>
+                                <td>no</td>
+                                <td>actions</td>
+                                <td>id Obat</td>
+                                <td>nama</td>
+                                <td>jumlah</td>
+                                <td>harga</td>
+                                <td>total</td>
+                                <!-- </tr> -->
                             </thead>
                             <tbody class="load_content">
-                                <tr>
+                                <!-- <tr>
 
-                                </tr>
+                                </tr> -->
 
                             </tbody>
                         </table>
@@ -259,6 +259,7 @@
 
         if ($('#search').val() != 0) {
 
+
             let Objekobat = {
                 id: idObat,
                 namaObat: namaObat
@@ -285,8 +286,11 @@
 
 
                 const deleteButton = document.createElement("button")
-                deleteButton.innerHTML = '<span data-feather="airplay">tes</span>';
-                deleteButton.className = "btn btn-outline-danger"
+                deleteButton.type = "button"
+                deleteButton.className = 'deleteDep'
+                deleteButton.innerHTML = '<i data-feather="trash" style="stroke: red;" ></i>';
+                deleteButton.onclick = delete_function(nomor);
+                // deleteButton.addEventListener("change", delete_function(nomor))
 
                 const text_nama = document.createTextNode(namaObat)
                 const text_id = document.createTextNode(idObat)
@@ -351,12 +355,46 @@
                 objArr.push(Objekobat)
 
                 console.log("data masuk =", objArr)
+                feather.replace()
+
             }
         }
 
     }
 
 
+
+    // $('body').on('click', 'button.deleteDep', function () {
+
+    //     console.log($(this).parents('tr'))
+
+    //     var table = document.getElementById("tabelpembelian");
+
+    //     console.log(table);
+
+    // });
+
+
+    var delete_function = (r) => {
+        return (e) => {
+            console.log(r);
+            var table = document.getElementById("tabelpembelian");
+            table.deleteRow(-1)
+            // console.log(i)
+            //document.getElementById("tabelpembelian").deleteRow(i);
+        }
+    }
+
+
+    // window.onload = function delete_function(r) {
+    //     var i = r.parentNode.parentNode.rowIndex;
+    //     document.getElementById("tabelpembelian").deleteRow(i);
+    // };
+
+    // function delete_function(r) {
+    //     var i = r.parentNode.parentNode.rowIndex;
+    //     document.getElementById("tabelpembelian").deleteRow(i);
+    // }
 
 
 
