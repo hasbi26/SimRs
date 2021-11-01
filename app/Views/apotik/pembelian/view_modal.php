@@ -398,8 +398,6 @@
             var table = document.getElementById("tabelpembelian");
             var row = document.getElementById(hapusRow)
             row.parentNode.removeChild(row)
-            // table.deleteRow(n)
-
             console.log("terbaru = ", objArr)
         }
     }
