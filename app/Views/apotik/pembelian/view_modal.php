@@ -93,33 +93,27 @@
 
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <p></p>
-                        <div id="table"></div>
+                    <p></p>
+                    <div id="table"></div>
 
-                        <table class='table table-bordered' id="tabelpembelian">
-                            <thead>
-                                <!-- <tr> -->
+                    <table class='table table-bordered' id="tabelpembelian">
+                        <thead>
 
-                                <td>no</td>
-                                <td>actions</td>
-                                <td>id Obat</td>
-                                <td>nama</td>
-                                <td>jumlah</td>
-                                <td>harga</td>
-                                <td>total</td>
-                                <!-- </tr> -->
-                            </thead>
-                            <tbody class="load_content">
-                                <!-- <tr>
-
-                                </tr> -->
-
-                            </tbody>
-                        </table>
+                            <td>no</td>
+                            <td>actions</td>
+                            <td>id Obat</td>
+                            <td>nama</td>
+                            <td>jumlah</td>
+                            <td>harga</td>
+                            <td>total</td>
+                        </thead>
+                        <tbody class="load_content">
 
 
-                    </div>
+                        </tbody>
+                    </table>
+
+
                 </div>
 
             </div>
@@ -233,6 +227,7 @@
 
     // const obj = {}
     var nomor = 1;
+    var idxArr = 0;
     // let index = 0;
     // const objObat = [{}]
     objArr = []
@@ -248,6 +243,7 @@
         var namaObat = textsplit[1];
         const load = document.querySelector('.load_content');
         const row = document.createElement("tr");
+        row.id = 'row' + nomor
         const no = document.createElement("td");
         const deleteRow = document.createElement("td");
         const id = document.createElement("td");
@@ -289,11 +285,12 @@
                 deleteButton.type = "button"
                 deleteButton.className = 'deleteDep'
                 deleteButton.innerHTML = '<i data-feather="trash" style="stroke: red;" ></i>';
-                deleteButton.onclick = delete_function(nomor);
+                deleteButton.onclick = delete_function(objArr.id, nomor);
                 // deleteButton.addEventListener("change", delete_function(nomor))
 
                 const text_nama = document.createTextNode(namaObat)
                 const text_id = document.createTextNode(idObat)
+                id.id = 'idobat' + nomor
                 const text_no = document.createTextNode(nomor)
                 const input_jumlah = document.createElement("input")
                 input_jumlah.className = "form-control";
@@ -338,6 +335,14 @@
 
                 // console.log()
 
+                row.appendChild(no)
+                row.appendChild(deleteRow)
+                row.appendChild(id)
+                row.appendChild(nama)
+                row.appendChild(jumlah)
+                row.appendChild(harga)
+                row.appendChild(total)
+
 
                 no.appendChild(text_no)
                 id.appendChild(text_id);
@@ -350,6 +355,7 @@
 
                 $("input#total" + nomor).prop('disabled', true);
                 nomor++
+                idxArr++
 
 
                 objArr.push(Objekobat)
@@ -364,37 +370,42 @@
 
 
 
-    // $('body').on('click', 'button.deleteDep', function () {
-
-    //     console.log($(this).parents('tr'))
-
-    //     var table = document.getElementById("tabelpembelian");
-
-    //     console.log(table);
-
-    // });
 
 
-    var delete_function = (r) => {
+
+    var delete_function = (i, n) => {
         return (e) => {
-            console.log(r);
+
+            var hapusRow = $('tr#row' + n).attr("id")
+            console.log("id row =", hapusRow)
+            var hapus = $('td#idobat' + n).text()
+            console.log(hapus)
+
+            const index = objArr.findIndex((element, index) => {
+                if (element.id === hapus) {
+                    return true
+                }
+            })
+
+
+
+
+            console.log("hapus row ke ",
+                n)
+
+
+            objArr.splice(index, 1)
             var table = document.getElementById("tabelpembelian");
-            table.deleteRow(-1)
-            // console.log(i)
-            //document.getElementById("tabelpembelian").deleteRow(i);
+            var row = document.getElementById(hapusRow)
+            row.parentNode.removeChild(row)
+            // table.deleteRow(n)
+
+            console.log("terbaru = ", objArr)
         }
     }
 
 
-    // window.onload = function delete_function(r) {
-    //     var i = r.parentNode.parentNode.rowIndex;
-    //     document.getElementById("tabelpembelian").deleteRow(i);
-    // };
 
-    // function delete_function(r) {
-    //     var i = r.parentNode.parentNode.rowIndex;
-    //     document.getElementById("tabelpembelian").deleteRow(i);
-    // }
 
 
 
