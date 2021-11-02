@@ -15,7 +15,7 @@
 
                             <label for="labelname" class="col-sm-3 col-form-label">No Faktur</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="kodeobat" name="kodeobat">
+                                <input type="text" class="form-control" id="nofaktur" name="header">
                                 <div class="invalid-feedback errorKodeobat">
                                 </div>
                             </div>
@@ -24,7 +24,7 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Suplier</label>
                             <div class="col-sm-8">
-                                <select class="form-select form-select-sm" name="golongan" id="golongan"
+                                <select class="form-select form-select-sm" name="header" id="suplier"
                                     aria-label="form-select-sm example">
                                     <option value="" selected>Pilih Suplier</option>
                                     <?php foreach($datasuplier as $suplier):?>
@@ -43,7 +43,7 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Tanggal Beli</label>
                             <div class="col-sm-8">
-                                <input type="date" class="form-control" id="tanggalexpire" name="tanggalexpire">
+                                <input type="date" class="form-control" id="tanggalbeli" name="header">
                                 <div class="invalid-feedback errorTanggalexpire">
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Type</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="type" name="type">
+                                <input type="text" class="form-control" id="type" name="header">
                                 <div class="invalid-feedback errorType">
                                 </div>
                             </div>
@@ -115,11 +115,27 @@
 
 
                 </div>
+                <div class="row">
+                    <hr>
+                    <div class="col-5">
+                    </div>
+                    <div class="col-3">
+                    </div>
+                    <div class="col-4">
+                        <!-- sub total : <input type="text" class="form-control" id="type" name="type"
+                            style="height: 30px; width: 50%"> -->
+                        <div class="form-group">
+                            <label for="subtotal">Sub Total : </label>
+                            <input type="text" name="subtotal" id="subtotal" style="height: 30px; width:75% "
+                                disabled />
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="submit" id="submit" class="btn btn-primary">Save changes</button>
             </div>
             <?= form_close(); ?>
         </div>
@@ -304,6 +320,7 @@
                 //  input_jumlah.addEventListener("change", calculateStuff.bind(1))
                 input_jumlah.addEventListener("change", some_function())
                 input_jumlah.id = 'jumlah' + nomor
+                input_jumlah.name = 'jumlah'
 
 
 
@@ -318,6 +335,7 @@
                 input_harga.addEventListener("change", some_function(nomor))
                 // input_harga.addEventListener("change", calculateStuff.bind(6))
                 input_harga.id = 'harga' + nomor
+                input_harga.name = 'harga'
 
 
 
@@ -330,6 +348,7 @@
                 input_total.style.height = '30px'
                 input_total.style.width = '80%'
                 input_total.style.padding = '.5em 1em;'
+                input_total.name = "total"
 
 
 
@@ -377,9 +396,7 @@
         return (e) => {
 
             var hapusRow = $('tr#row' + n).attr("id")
-            console.log("id row =", hapusRow)
             var hapus = $('td#idobat' + n).text()
-            console.log(hapus)
 
             const index = objArr.findIndex((element, index) => {
                 if (element.id === hapus) {
@@ -388,17 +405,12 @@
             })
 
 
-
-
-            console.log("hapus row ke ",
-                n)
-
-
             objArr.splice(index, 1)
             var table = document.getElementById("tabelpembelian");
             var row = document.getElementById(hapusRow)
             row.parentNode.removeChild(row)
-            console.log("terbaru = ", objArr)
+
+            mencari_total()
         }
     }
 
@@ -415,7 +427,76 @@
             // console.log("as", total)
             $('input#total' + some_var).val(total)
 
-            console.log(some_var)
+            mencari_total()
+
+
         }
     }
+
+    var mencari_total = () => {
+
+
+        var arr = document.getElementsByName('total');
+        var tot = 0;
+        for (var i = 0; i < arr.length; i++) {
+            if (parseInt(arr[i].value))
+                tot += parseInt(arr[i].value);
+        }
+        $('input#subtotal').val(tot)
+
+    }
+
+
+    $("button#submit").click(function () {
+        console.log("ini name", $("[name='jumlah']"))
+
+        var isValid = true
+
+        // if (!$("input#kodeobat").val() && !$("input#type").val()) {
+        //     $("input#kodeobat").css("border", "1px solid red");
+        //     $("input#type").css("border", "1px solid red");
+        //     $("input#kodeobat").focus();
+        // } else {
+
+
+        $("[name='header']").each(function () {
+            var element = $(this);
+            // console.log("element", element)
+            if (element.val() == "") {
+                isValid = false;
+                element.css("border", "1px solid red");
+                element.focus();
+            } else {
+                element.css("border", "1px solid green");
+            }
+        });
+
+
+        $("[name='jumlah']").each(function () {
+            var element = $(this);
+            console.log("element", element)
+            if (element.val() == "") {
+                isValid = false;
+                element.css("border", "1px solid red");
+                element.focus();
+            } else {
+                element.css("border", "1px solid green");
+            }
+        });
+
+        $("[name='harga']").each(function () {
+            var element = $(this);
+            console.log("element", element)
+            if (element.val() == "") {
+                isValid = false;
+                element.css("border", "1px solid red");
+                element.focus();
+            } else {
+                element.css("border", "1px solid green");
+            }
+        });
+
+        console.log("valid = ", isValid)
+        //}
+    })
 </script>
