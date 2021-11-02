@@ -452,11 +452,7 @@
 
         var isValid = true
 
-        // if (!$("input#kodeobat").val() && !$("input#type").val()) {
-        //     $("input#kodeobat").css("border", "1px solid red");
-        //     $("input#type").css("border", "1px solid red");
-        //     $("input#kodeobat").focus();
-        // } else {
+
 
 
         $("[name='header']").each(function () {
