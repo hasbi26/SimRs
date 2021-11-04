@@ -247,6 +247,7 @@
     // let index = 0;
     // const objObat = [{}]
     objArr = []
+    arrBaru = []
 
 
     function cobaTambah() {
@@ -263,6 +264,7 @@
         const no = document.createElement("td");
         const deleteRow = document.createElement("td");
         const id = document.createElement("td");
+        // id.className = 'idnama'
         const nama = document.createElement("td");
         const jumlah = document.createElement("td");
         const harga = document.createElement("td");
@@ -274,7 +276,10 @@
 
             let Objekobat = {
                 id: idObat,
-                namaObat: namaObat
+                namaObat: namaObat,
+                jumlah: jumlah,
+                harga: harga,
+                total: total
             }
 
             let result = false
@@ -305,8 +310,13 @@
                 // deleteButton.addEventListener("change", delete_function(nomor))
 
                 const text_nama = document.createTextNode(namaObat)
+                text_nama.class = "namaid"
                 const text_id = document.createTextNode(idObat)
+                text_id.class = "id"
                 id.id = 'idobat' + nomor
+                id.className = 'nameid'
+                nama.id = 'namaobat' + nomor
+                nama.className = 'namaobat'
                 const text_no = document.createTextNode(nomor)
                 const input_jumlah = document.createElement("input")
                 input_jumlah.className = "form-control";
@@ -417,15 +427,15 @@
 
 
 
-
-
     var some_function = (some_var) => {
         return (e) => {
+
+
             let jumlah = $('input#jumlah' + some_var).val()
             let harga = $('input#harga' + some_var).val()
             let total = parseInt(jumlah) * parseInt(harga)
-            // console.log("as", total)
             $('input#total' + some_var).val(total)
+
 
             mencari_total()
 
@@ -447,13 +457,21 @@
     }
 
 
-    $("button#submit").click(function () {
-        console.log("ini name", $("[name='jumlah']"))
 
+    // var element = {},
+    //     cart = [];
+
+    $("button#submit").click(function () {
+        // console.log("ini name", $("[name='jumlah']"))
+
+        var nofaktur = $('input#nofaktur').val()
+        var suplier = $('#suplier').val()
+        var tanggal = $('#tanggalbeli').val()
+        var type = $('#type').val()
+        var total = $('#subtotal').val()
         var isValid = true
 
-
-
+        let datadetail = []
 
         $("[name='header']").each(function () {
             var element = $(this);
@@ -470,7 +488,6 @@
 
         $("[name='jumlah']").each(function () {
             var element = $(this);
-            console.log("element", element)
             if (element.val() == "") {
                 isValid = false;
                 element.css("border", "1px solid red");
@@ -482,7 +499,6 @@
 
         $("[name='harga']").each(function () {
             var element = $(this);
-            console.log("element", element)
             if (element.val() == "") {
                 isValid = false;
                 element.css("border", "1px solid red");
@@ -493,6 +509,41 @@
         });
 
         console.log("valid = ", isValid)
+        if (isValid) {
+
+            var data1 = [{
+                'nofaktur': nofaktur,
+                'suplier': suplier,
+                'tanggal': tanggal,
+                'type': type,
+                'total': total
+            }]
+            console.log("DATA HEADER =", data1)
+
+            $(".load_content").find('tr').each(function () {
+
+                var col2 = $(this).find("td:eq(2)").text();
+                var col3 = $(this).find("td:eq(3)").text();
+                var col4 = $(this).find("td:eq(4) input").val();
+                var col5 = $(this).find("td:eq(5) input").val();
+                var col6 = $(this).find("td:eq(6) input").val();
+
+
+                var objek = {
+                    id: col2,
+                    nama: col3,
+                    jumlah: col4,
+                    harga: col5,
+                    total: col6
+                }
+
+                datadetail.push(objek)
+
+            })
+
+            console.log(datadetail)
+
+        }
         //}
     })
 </script>
