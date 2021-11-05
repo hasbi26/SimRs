@@ -8,7 +8,6 @@
                 <th>Suplyer</th>
                 <th>Tanggal Beli</th>
                 <th>Total Harga</th>
-                <th>Total Bayar</th>
                 <th>Type </th>
                 <th>Action</th>
             </tr>
@@ -23,7 +22,6 @@
                 <td><?= $datas->id_suplier?></td>
                 <td><?= $datas->tgl_beli?></td>
                 <td><?= $datas->total_harga?></td>
-                <td><?= $datas->total_bayar?></td>
                 <td><?= $datas->type?></td>
                 <td class="text-center" width="20%">
                     <button class="btn btn-success btn-sm mb-1" onclick="edit('<?= $datas->id ?>')">

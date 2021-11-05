@@ -512,11 +512,11 @@
         if (isValid) {
 
             var data1 = [{
-                'nofaktur': nofaktur,
-                'suplier': suplier,
-                'tanggal': tanggal,
+                'no_faktur': nofaktur,
+                'id_suplier': suplier,
+                'tgl_beli': tanggal,
                 'type': type,
-                'total': total
+                'total_harga': total
             }]
             console.log("DATA HEADER =", data1)
 
@@ -542,6 +542,26 @@
             })
 
             console.log(datadetail)
+
+            $.ajax({
+                type: 'POST',
+                url: '/apotik/pembelian/save_data',
+                data: {
+                    val: data1,
+                    val2: datadetail
+                },
+                success: function (msg) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: response.success,
+                        showConfirmButton: false,
+                        timer: 1800
+                    })
+                    $('#addModal').modal('hide');
+                }
+            })
+
 
         }
         //}
