@@ -122,6 +122,7 @@ $routes->get('/apotik/pembelian/get_data', 'Apotik/PembelianObat::get_data');
 $routes->get('/apotik/pembelian/get_modal', 'Apotik/PembelianObat::get_modal');
 $routes->post('/apotik/pembelian/save_data', 'Apotik/PembelianObat::save_data');
 $routes->get('/apotik/obat/select2obat', 'Apotik/Obat::Select2Obat');
+$routes->post('/apotik/pembelian/checkfaktur', 'Apotik/PembelianObat::checkfaktur');
 
 
 

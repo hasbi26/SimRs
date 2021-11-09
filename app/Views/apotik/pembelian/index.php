@@ -48,7 +48,6 @@
     $(document).ready(function () {
         getProducts();
 
-
         $('.add-modal').click(function (e) {
             e.preventDefault();
             $.ajax({

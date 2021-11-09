@@ -145,59 +145,96 @@
 
 
 <script defer>
-    $(document).ready(function () {
-        $('.form-add').submit(function (e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-            $.ajax({
-                type: "post",
-                url: $(this).attr('action'),
-                // data: $(this).serialize(),
-                data: formData,
-                processData: false,
-                contentType: false,
-                dataType: "json",
-                beforeSend: function () {
-                    $('.btn-save').attr('disable', 'disabled');
-                    $('.btn-save').html('<i class="fas fa-spin fa-spinner"></i>');
-                },
-                complete: function () {
-                    $('.btn-save').removeAttr('disable');
-                    $('.btn-save').html('Save');
-                },
-                success: function (response) {
-                    if (response.error) {
-                        if (response.error.kodeobat) {
-                            $('#kodeobat').addClass('is-invalid');
-                            $('.errorKodeobat').html(response.error.kodeobat);
-                        } else {
-                            $('#kodeobat').removeClass('is-invalid');
-                            $('.errorKodeobat').html('');
-                        }
+    // $(document).ready(function () {
+    //     $('.form-add').submit(function (e) {
+    //         e.preventDefault();
+    //         var formData = new FormData(this);
+    //         console.log("form", fromData)
+    //         $.ajax({
+    //             type: "post",
+    //             url: $(this).attr('action'),
+    //             // data: $(this).serialize(),
+    //             data: formData,
+    //             processData: false,
+    //             contentType: false,
+    //             dataType: "json",
+    //             beforeSend: function () {
+    //                 $('.btn-save').attr('disable', 'disabled');
+    //                 $('.btn-save').html('<i class="fas fa-spin fa-spinner"></i>');
+    //             },
+    //             complete: function () {
+    //                 $('.btn-save').removeAttr('disable');
+    //                 $('.btn-save').html('Save');
+    //             },
+    //             success: function (response) {
+    //                 if (response.error) {
+    //                     if (response.error.kodeobat) {
+    //                         $('#kodeobat').addClass('is-invalid');
+    //                         $('.errorKodeobat').html(response.error.kodeobat);
+    //                     } else {
+    //                         $('#kodeobat').removeClass('is-invalid');
+    //                         $('.errorKodeobat').html('');
+    //                     }
 
 
 
-                    } else {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success',
-                            text: response.success,
-                            showConfirmButton: false,
-                            timer: 1800
-                        })
+    //                 } else {
+    //                     Swal.fire({
+    //                         icon: 'success',
+    //                         title: 'Success',
+    //                         text: response.success,
+    //                         showConfirmButton: false,
+    //                         timer: 1800
+    //                     })
 
-                        $('#addModal').modal('hide');
-                        getProducts();
-                    }
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+    //                     $('#addModal').modal('hide');
+    //                     getProducts();
+    //                 }
+    //             },
+    //             error: function (xhr, ajaxOptions, thrownError) {
+    //                 // alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+    //             }
+    //         });
+    //         return false;
+    //     });
+    // });
+
+    $('#nofaktur').keyup(function () {
+        console.log(this.value)
+
+        $.ajax({
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            type: "POST",
+            url: "/apotik/pembelian/checkfaktur",
+            contentType: "application/json; charset=utf-8",
+
+            // dataType: "json",
+            data: {
+                'nofaktur': this.value
+            },
+            complete: function (data) {
+                console.log(data)
+                if (data.responseText === "NULL\n") {
+                    console.log("kosong")
+
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ooops',
+                        text: "No Faktur Sudah Ada Silahkan Ganti",
+                        showConfirmButton: false,
+                        timer: 2300
+                    })
+
+                    $('#nofaktur').val(null)
                 }
-            });
-            return false;
-        });
-    });
+            }
 
+
+        })
+    })
 
     $(document).ready(function () {
         $('#search').select2({
@@ -435,8 +472,6 @@
             let harga = $('input#harga' + some_var).val()
             let total = parseInt(jumlah) * parseInt(harga)
             $('input#total' + some_var).val(total)
-
-
             mencari_total()
 
 
@@ -541,29 +576,43 @@
 
             })
 
-            console.log(datadetail)
+            console.log("siap data1 ", data1)
+            console.log("siap kirims", datadetail)
 
             $.ajax({
                 type: 'POST',
                 url: '/apotik/pembelian/save_data',
-                data: {
-                    val: data1,
-                    val2: datadetail
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
                 },
-                success: function (msg) {
+                data: {
+                    data1,
+                    datadetail
+                },
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success: function (data) {
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
-                        text: response.success,
+                        text: data.success,
                         showConfirmButton: false,
                         timer: 1800
                     })
                     $('#addModal').modal('hide');
+                    getProducts();
+
+                },
+                error: function (err) {
+                    // $('#addModal').modal('hide');
+                    console.log("error", err)
+                    alert(err)
                 }
             })
 
 
         }
-        //}
+
     })
 </script>

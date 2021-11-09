@@ -8,7 +8,7 @@ class PembelianModel extends Model
 {
     // ...
     protected $table = 'tr_pembelian';
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'no_faktur';
     protected $useTimestamps = true;
     protected $returnType    = 'array';
 

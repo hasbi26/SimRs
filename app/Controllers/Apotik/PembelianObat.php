@@ -91,33 +91,32 @@ class PembelianObat extends BaseController
 		}
 	}
 
+
+    public function checkfaktur(){
+        $noFakturRaw = $this->request->getRawInput();
+        $noFaktur = dot_array_search('nofaktur', $noFakturRaw);
+        var_dump($this->Pembelian->find($noFaktur));
+    }
+
     public function save_data()
 	{ 
         if ($this->request->isAJAX()){
 
-            $data1 = service('request')->getPost('val');
-            $dataHeader = $_POST['val'];
-            $dataDetail = $_POST['val2'];
-            // var_dump($dataDetail);
-            // die;
-            $data2 = service('request')->getPost('val2');
+
+            $request = \Config\Services::request();
 
 
-
-            foreach($dataHeader as $data){
-                $nofaktur = $data['no_faktur'];
-                $idsuplier = $data['id_suplier'];
-                $tgl_beli = $data['tgl_beli'];
-                $total_harga = $data['total_harga'];
-                $type = $data['type'];
-               }
+            $data1 = $request->getRawInput();
+       
+            $dataHeader = dot_array_search('data1.0', $data1);
+            $dataDetail = dot_array_search('datadetail', $data1);
 
             $pembelianHeader = [
-                'no_faktur'  => $nofaktur,
-                'id_suplier'   => $idsuplier,
-                'tgl_beli'         => $tgl_beli,
-                'total_harga'       => $total_harga,
-                'type'       => $type,
+                'no_faktur'  => $dataHeader['no_faktur'],
+                'id_suplier'   =>  $dataHeader['id_suplier'],
+                'tgl_beli'         => $dataHeader['tgl_beli'],
+                'total_harga'       => $dataHeader['total_harga'],
+                'type'       => $dataHeader['type']
 
             ];
 
@@ -125,7 +124,7 @@ class PembelianObat extends BaseController
             $pembelianDetail = array();
             foreach ($dataDetail as $data) :
                 $detail = [
-                    'id_pembelian' => $nofaktur,
+                    'no_faktur' => $dataHeader['no_faktur'],
                     'kodeobat'  => $data['id'],
                     'harga'       => $data['harga'],
                     'jumlah'         => $data['jumlah'],
@@ -133,11 +132,7 @@ class PembelianObat extends BaseController
                 ];
                 array_push($pembelianDetail, $detail);
             endforeach;
-    
 
-            // var_dump("Header", $pembelianHeader);
-            // var_dump('Detail', $pembelianDetail);
-            // die;
         $this->db->transStart();
         $this->Pembelian->insert($pembelianHeader);
         $this->PembelianDetail->insertBatch($pembelianDetail);
@@ -154,16 +149,15 @@ class PembelianObat extends BaseController
             // session()->setflashdata('failed', 'Data penjualan gagal disimpan.');
             // return redirect()->to(base_url('cart'));
         } elseif ($this->db->transStatus() == true) {
-            var_dump("Sukses" );
             $result = [
                 'success' => 'Data berhasil masuk ke database'
             ];
+            // return $this->response->setJSON($result);
+            echo json_encode($result);
             // $cart->destroy();
             // session()->setflashdata('success', 'Data penjualan berhasil disimpan.');
             // return redirect()->to(base_url('sales/' . $idPenjualan));
         }
-
-        echo json_encode($result);
 
 
         } else {
