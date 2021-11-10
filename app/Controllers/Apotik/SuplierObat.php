@@ -31,9 +31,12 @@ class SuplierObat extends BaseController
         if ($this->request->isAJAX()) {
 
 
-            $builder = $this->db->table("tm_suplier_obat as suplierobat");
-            $builder->select('suplierobat.*');
-            $dataku = $builder->get()->getResult();
+            // $builder = $this->db->table("tm_suplier_obat as suplierobat");
+            // $builder->select('suplierobat.*');
+            
+            
+            // $dataku = $builder->get()->getResult();
+            $dataku = $this->SuplierObat->findAll();
 
 			$data = [
 				'data_suplier_obat' => $dataku

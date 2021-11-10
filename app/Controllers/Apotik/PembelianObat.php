@@ -50,16 +50,18 @@ class PembelianObat extends BaseController
 
 
             $builder = $this->db->table("tr_pembelian as pembelian");
-            $builder->select('pembelian.*');
-            // $builder->join('tm_golongan_obat as golongan', 'obat.golongan = golongan.id');
-            // $builder->join('tm_jenis_obat as jenis', 'obat.jenis = jenis.id');
-            // $builder->join('tm_kategori_obat as kategori', 'obat.kategori = kategori.id');
-            // $builder->join('tm_satuan_obat as satuan', 'obat.satuan = satuan.id');
+            $builder->select('pembelian.*, suplier.namasuplierobat as namasuplier');
+            $builder->join('tm_suplier_obat as suplier', 'suplier.id = pembelian.id_suplier');
+            $builder->where('pembelian.deleted_at', '0000-00-00 00:00:00' );
+
             $dataku = $builder->get()->getResult();
+
 
 			$data = [
 				'data_pembelian' => $dataku
 			];
+
+            // var_dump($data);
 
 			$result = [
 				'output' => view('apotik/pembelian/view_data', $data)
@@ -95,7 +97,7 @@ class PembelianObat extends BaseController
     public function checkfaktur(){
         $noFakturRaw = $this->request->getRawInput();
         $noFaktur = dot_array_search('nofaktur', $noFakturRaw);
-        var_dump($this->Pembelian->find($noFaktur));
+        echo json_encode($this->Pembelian->find($noFaktur));
     }
 
     public function save_data()
@@ -116,7 +118,8 @@ class PembelianObat extends BaseController
                 'id_suplier'   =>  $dataHeader['id_suplier'],
                 'tgl_beli'         => $dataHeader['tgl_beli'],
                 'total_harga'       => $dataHeader['total_harga'],
-                'type'       => $dataHeader['type']
+                'type'       => $dataHeader['type'],
+                'created_by' => $_SESSION['name']
 
             ];
 
@@ -129,6 +132,7 @@ class PembelianObat extends BaseController
                     'harga'       => $data['harga'],
                     'jumlah'         => $data['jumlah'],
                     'total'        => $data['total'],
+                    'created_by' => $_SESSION['name']
                 ];
                 array_push($pembelianDetail, $detail);
             endforeach;
@@ -163,6 +167,18 @@ class PembelianObat extends BaseController
         } else {
             exit('404 Not Found');
         }
+    }
+
+    public function delete_data (){
+        $id = $this->request->getVar('id');
+
+        $this->Pembelian->delete($id);
+
+        $result = [
+            'output' => "Data has been deleted from database"
+        ];
+
+        echo json_encode($result);
     }
 
 

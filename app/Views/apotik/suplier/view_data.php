@@ -19,18 +19,18 @@
                 foreach ($data_suplier_obat as $datas) : ?>
             <tr>
                 <td width="1%"><?= $no++; ?></td>
-                <td><?= $datas->id ?></td>
-                <td><?= $datas->namasuplierobat?></td>
-                <td><?= $datas->alamatsuplierobat?></td>
-                <td><?= $datas->teleponsuplierobat?></td>
-                <td><?= $datas->emailsuplierobat?></td>
-                <td><?= $datas->keterangansuplierobat?></td>
+                <td><?= $datas['id'] ?></td>
+                <td><?= $datas['namasuplierobat'] ?></td>
+                <td><?= $datas['alamatsuplierobat']?></td>
+                <td><?= $datas['teleponsuplierobat']?></td>
+                <td><?= $datas['emailsuplierobat']?></td>
+                <td><?= $datas['keterangansuplierobat']?></td>
                 <td class="text-center" width="20%">
-                    <button class="btn btn-success btn-sm mb-1" onclick="edit('<?= $datas->id ?>')">
+                    <button class="btn btn-success btn-sm mb-1" onclick="edit('<?= $datas['id'] ?>')">
                         Update
                     </button>
 
-                    <button class="btn btn-danger btn-sm mb-1" onclick="deletes('<?= $datas->id ?>')">
+                    <button class="btn btn-danger btn-sm mb-1" onclick="deletes('<?= $datas['id'] ?>')">
                         Delete
                     </button>
                 </td>

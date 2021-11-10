@@ -19,7 +19,7 @@
             <tr>
                 <td width="1%"><?= $no++; ?></td>
                 <td><?= $datas->no_faktur ?></td>
-                <td><?= $datas->id_suplier?></td>
+                <td><?= $datas->namasuplier?></td>
                 <td><?= $datas->tgl_beli?></td>
                 <td><?= $datas->total_harga?></td>
                 <td><?= $datas->type?></td>
@@ -77,7 +77,7 @@
             if (result.value) {
                 $.ajax({
                     type: "post",
-                    url: "<?= base_url('/apotik/obat/delete_data'); ?>",
+                    url: "<?= base_url('/apotik/pembelian/delete_data'); ?>",
                     data: {
                         id: id
                     },

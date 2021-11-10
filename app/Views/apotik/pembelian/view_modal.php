@@ -55,7 +55,12 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Type</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="type" name="header">
+                                <select id="type" class="form-control" name="header">
+                                    <option value="">--Pilih Type--</option>
+                                    <option value="cash">Cash</option>
+                                    <option value="kredit">Kredit</option>
+                                    <option value="Konsiyasi">Konsiyasi</option>
+                                </select>
                                 <div class="invalid-feedback errorType">
                                 </div>
                             </div>
@@ -145,60 +150,6 @@
 
 
 <script defer>
-    // $(document).ready(function () {
-    //     $('.form-add').submit(function (e) {
-    //         e.preventDefault();
-    //         var formData = new FormData(this);
-    //         console.log("form", fromData)
-    //         $.ajax({
-    //             type: "post",
-    //             url: $(this).attr('action'),
-    //             // data: $(this).serialize(),
-    //             data: formData,
-    //             processData: false,
-    //             contentType: false,
-    //             dataType: "json",
-    //             beforeSend: function () {
-    //                 $('.btn-save').attr('disable', 'disabled');
-    //                 $('.btn-save').html('<i class="fas fa-spin fa-spinner"></i>');
-    //             },
-    //             complete: function () {
-    //                 $('.btn-save').removeAttr('disable');
-    //                 $('.btn-save').html('Save');
-    //             },
-    //             success: function (response) {
-    //                 if (response.error) {
-    //                     if (response.error.kodeobat) {
-    //                         $('#kodeobat').addClass('is-invalid');
-    //                         $('.errorKodeobat').html(response.error.kodeobat);
-    //                     } else {
-    //                         $('#kodeobat').removeClass('is-invalid');
-    //                         $('.errorKodeobat').html('');
-    //                     }
-
-
-
-    //                 } else {
-    //                     Swal.fire({
-    //                         icon: 'success',
-    //                         title: 'Success',
-    //                         text: response.success,
-    //                         showConfirmButton: false,
-    //                         timer: 1800
-    //                     })
-
-    //                     $('#addModal').modal('hide');
-    //                     getProducts();
-    //                 }
-    //             },
-    //             error: function (xhr, ajaxOptions, thrownError) {
-    //                 // alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
-    //             }
-    //         });
-    //         return false;
-    //     });
-    // });
-
     $('#nofaktur').keyup(function () {
         console.log(this.value)
 
@@ -216,7 +167,7 @@
             },
             complete: function (data) {
                 console.log(data)
-                if (data.responseText === "NULL\n") {
+                if (data.responseText === "null") {
                     console.log("kosong")
 
                 } else {
