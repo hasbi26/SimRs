@@ -213,17 +213,27 @@ console.log("test", tbody)
 var table = $("#tabelpembelian");
 
 for (i = 0; i<test.length; i++){
-
+    
     tr = tbody.insertRow(0)
+    for (j = 0 ; j<7; j++){
+        tr.insertCell()
+
+        // tr.insertCell(j)
+    }
+    tr.insertCell(0).innerText = i
+    tr.insertCell(2).innerText = test[i]['kodeobat']
+    tr.insertCell(4).innerText = test[i]['jumlah']
+    tr.insertCell(5).innerText = test[i]['harga']
+    tr.insertCell(6).innerText = test[i]['total']
 }
 
+console.log(test[0]['kodeobat'])
 
 
 
+// tr.insertCell(0)
 
-// td = document.createElement("td")
 
-// tr.append(td)
 
 
 
