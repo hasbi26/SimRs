@@ -48,14 +48,7 @@ class PembelianObat extends BaseController
     {
         if ($this->request->isAJAX()) {
 
-
-            $builder = $this->db->table("tr_pembelian as pembelian");
-            $builder->select('pembelian.*, suplier.namasuplierobat as namasuplier');
-            $builder->join('tm_suplier_obat as suplier', 'suplier.id = pembelian.id_suplier');
-            $builder->where('pembelian.deleted_at', '0000-00-00 00:00:00' );
-
-            $dataku = $builder->get()->getResult();
-
+            $dataku = $this->Pembelian->pembelianJoinSuplier();
 
 			$data = [
 				'data_pembelian' => $dataku
@@ -97,7 +90,7 @@ class PembelianObat extends BaseController
     public function checkfaktur(){
         $noFakturRaw = $this->request->getRawInput();
         $noFaktur = dot_array_search('nofaktur', $noFakturRaw);
-        echo json_encode($this->Pembelian->find($noFaktur));
+        echo json_encode($this->Pembelian->where('no_faktur', $noFaktur)->first());
     }
 
     public function save_data()
@@ -169,16 +162,54 @@ class PembelianObat extends BaseController
         }
     }
 
-    public function delete_data (){
+    public function delete_data(){
         $id = $this->request->getVar('id');
 
+        
+        $noFaktur = $this->Pembelian->getFakturCode($id);
+       
         $this->Pembelian->delete($id);
+        $this->PembelianDetail->delete($noFaktur);
 
         $result = [
             'output' => "Data has been deleted from database"
         ];
 
         echo json_encode($result);
+    }
+
+
+    public function get_modal_edit()
+    {
+    if ($this->request->isAJAX()) {
+    $id = $this->request->getVar('id');
+
+    $row = $this->Pembelian->pembelianJoinSuplier($id);
+    $detail = $this->PembelianDetail->getAlldata($row[0]->no_faktur);
+
+    $type = ['cash', 'kredit', 'konsiyasi'];
+    
+    $data = [
+        'id' => $row[0]->id,
+        'nofaktur' => $row[0]->no_faktur,
+        'id_suplier' => $row[0]->id_suplier,
+        'tgl_beli' => $row[0]->tgl_beli,
+        'total_harga' => $row[0]->total_harga,
+        'type' => $row[0]->type,
+        'suplier' => $this->Suplier->findAll(),
+        'tipe' => $type,
+        'detail' => $detail
+
+    ];
+
+    $result = [
+    'output' => view('apotik/pembelian/view_modal_edit', $data)
+    ];
+
+    echo json_encode($result);
+    } else {
+    exit('404 Not Found');
+    }
     }
 
 

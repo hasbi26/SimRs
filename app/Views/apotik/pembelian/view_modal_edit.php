@@ -1,8 +1,8 @@
-<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="TambahModalLabel" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="TambahModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="TambahModalLabel">Tambah Data Pembelian</h5>
+                <h5 class="modal-title" id="TambahModalLabel">edit Data Pembelian</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
@@ -15,7 +15,8 @@
 
                             <label for="labelname" class="col-sm-3 col-form-label">No Faktur</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="nofaktur" name="header">
+                                <input type="text" class="form-control" id="nofaktur" name="header"
+                                    value="<?= $nofaktur; ?>">
                                 <div class="invalid-feedback errorKodeobat">
                                 </div>
                             </div>
@@ -26,10 +27,16 @@
                             <div class="col-sm-8">
                                 <select class="form-select form-select-sm" name="header" id="suplier"
                                     aria-label="form-select-sm example">
-                                    <option value="" selected>Pilih Suplier</option>
-                                    <?php foreach($datasuplier as $suplier):?>
-                                    <option value="<?= $suplier['id']?>"><?= $suplier['namasuplierobat'] ?></option>
+
+
+                                    <?php foreach($suplier as $datasuplier):?>
+                                    <option <?php if ($datasuplier['id'] == $id_suplier )
+                                        {echo 'selected="selected"' ;} ?> value="<?= $datasuplier['id']; ?>">
+                                        <?=$datasuplier['namasuplierobat'] ?></option>
+
+
                                     <?php endforeach; ?>
+
                                 </select>
                                 <div class="invalid-feedback errorSuplier">
                                 </div>
@@ -43,7 +50,8 @@
                         <div class="form-group row mb-1">
                             <label for="labelname" class="col-sm-3 col-form-label">Tanggal Beli</label>
                             <div class="col-sm-8">
-                                <input type="date" class="form-control" id="tanggalbeli" name="header">
+                                <input type="date" class="form-control" id="tanggalbeli" name="header"
+                                    value="<?= $tgl_beli; ?>">
                                 <div class="invalid-feedback errorTanggalexpire">
                                 </div>
                             </div>
@@ -56,10 +64,13 @@
                             <label for="labelname" class="col-sm-3 col-form-label">Type</label>
                             <div class="col-sm-8">
                                 <select id="type" class="form-select form-select-sm" name="header">
-                                    <option value="">--Pilih Type--</option>
-                                    <option value="cash">Cash</option>
-                                    <option value="kredit">Kredit</option>
-                                    <option value="konsiyasi">Konsiyasi</option>
+                                    <?php foreach($tipe as $datatipe):?>
+                                    <option <?php if ($datatipe == $type )
+                                        {echo 'selected="selected"' ;} ?> value="<?= $datatipe?>">
+                                        <?=$datatipe ?></option>
+
+
+                                    <?php endforeach; ?>
                                 </select>
                                 <div class="invalid-feedback errorType">
                                 </div>
@@ -99,7 +110,7 @@
                 </div>
                 <div class="row">
                     <p></p>
-                    <div id="table"></div>
+                    <!-- <div id="table"></div> -->
 
                     <table class='table table-bordered' id="tabelpembelian">
                         <thead>
@@ -150,6 +161,85 @@
 
 
 <script defer>
+
+var test = <?php 
+    echo json_encode($detail) ?>
+
+
+
+
+
+const tbody = document.querySelector('.load_content');
+
+
+const tdNo = document.createElement("td")
+const tdActions = document.createElement("td")
+const tdIdObat = document.createElement("td")
+const tdNamaObat = document.createElement("td")
+const tdJumlah = document.createElement("td")
+const tdHarga = document.createElement("td")
+const tdTotal = document.createElement("td")
+
+
+const input = document.createElement("input");
+
+const textNo = document.createTextNode("No")
+const textActions = document.createTextNode("Hapus")
+const textIdObat = document.createTextNode("idobat")
+const textNama = document.createTextNode("namaObat")
+const inputJumlah = document.createElement("input")
+const inputHarga = document.createElement("input")
+const inputTotal = document.createElement("input")
+
+console.log(test)
+tdNo.append(textNo)
+tdActions.append(textActions)
+tdIdObat.append(textIdObat)
+tdNamaObat.append(textNama)
+tdJumlah.append(inputJumlah)
+tdHarga.append(inputHarga)
+tdTotal.append(inputTotal)
+
+
+
+  
+
+
+console.log("test", tbody)
+
+
+
+
+var table = $("#tabelpembelian");
+
+for (i = 0; i<test.length; i++){
+
+    tr = tbody.insertRow(0)
+}
+
+
+
+
+
+// td = document.createElement("td")
+
+// tr.append(td)
+
+
+
+
+console.log("tr",tr)
+
+// var trr = table.insertRow()
+
+// console.log("trr", trr)
+
+
+
+
+
+
+
     $('#nofaktur').keyup(function () {
         console.log(this.value)
 
@@ -566,4 +656,8 @@
         }
 
     })
+
+
+
+
 </script>

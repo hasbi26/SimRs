@@ -46,7 +46,7 @@
     function edit(id) {
         $.ajax({
             type: "post",
-            url: "<?= base_url('/apotik/obat/get_modal_edit'); ?>",
+            url: "<?= base_url('/apotik/pembelian/get_modal_edit'); ?>",
             data: {
                 id: id
             },
