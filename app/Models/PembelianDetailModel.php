@@ -18,7 +18,7 @@ class PembelianDetailModel extends Model
 
 
     public function getAlldata($nofaktur){
-        return $this->where('no_faktur', $nofaktur)->findAll();
+        return  $this->join('tm_obat as obat', 'obat.kodeobat = tr_pembelian_detail.kodeobat')->where('no_faktur', $nofaktur)->findAll();
     }
 
 

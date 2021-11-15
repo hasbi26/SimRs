@@ -187,6 +187,8 @@ class PembelianObat extends BaseController
     $row = $this->Pembelian->pembelianJoinSuplier($id);
     $detail = $this->PembelianDetail->getAlldata($row[0]->no_faktur);
 
+    // var_dump($detail);
+
     $type = ['cash', 'kredit', 'konsiyasi'];
     
     $data = [

@@ -54,6 +54,10 @@
             success: function (response) {
                 if (response.output) {
                     $('.view-modal').html(response.output).show();
+                    $('#editModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    })
                     $('#editModal').modal('show');
                 }
             },

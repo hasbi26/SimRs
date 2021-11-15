@@ -141,8 +141,8 @@
                         <!-- sub total : <input type="text" class="form-control" id="type" name="type"
                             style="height: 30px; width: 50%"> -->
                         <div class="form-group">
-                            <label for="subtotal">Sub Total : </label>
-                            <input type="text" name="subtotal" id="subtotal" style="height: 30px; width:75% "
+                            <label for="subtotal">Grand Total : </label>
+                            <input type="text" name="subtotal" id="subtotal" style="height: 30px; width:75% " value="<?= $total_harga?>"
                                 disabled />
                         </div>
                     </div>
@@ -161,6 +161,7 @@
 
 
 <script defer>
+    // var tbody  = ""
 
 var test = <?php 
     echo json_encode($detail) ?>
@@ -169,27 +170,27 @@ var test = <?php
 
 
 
-const tbody = document.querySelector('.load_content');
+var tbody = document.querySelector('.load_content');
 
 
-const tdNo = document.createElement("td")
-const tdActions = document.createElement("td")
-const tdIdObat = document.createElement("td")
-const tdNamaObat = document.createElement("td")
-const tdJumlah = document.createElement("td")
-const tdHarga = document.createElement("td")
-const tdTotal = document.createElement("td")
+var tdNo = document.createElement("td")
+var tdActions = document.createElement("td")
+var tdIdObat = document.createElement("td")
+var tdNamaObat = document.createElement("td")
+var tdJumlah = document.createElement("td")
+var tdHarga = document.createElement("td")
+var tdTotal = document.createElement("td")
 
 
-const input = document.createElement("input");
+var input = document.createElement("input");
 
-const textNo = document.createTextNode("No")
-const textActions = document.createTextNode("Hapus")
-const textIdObat = document.createTextNode("idobat")
-const textNama = document.createTextNode("namaObat")
-const inputJumlah = document.createElement("input")
-const inputHarga = document.createElement("input")
-const inputTotal = document.createElement("input")
+var textNo = document.createTextNode("No")
+var textActions = document.createTextNode("Hapus")
+var textIdObat = document.createTextNode("idobat")
+var textNama = document.createTextNode("namaObat")
+var inputJumlah = document.createElement("input")
+var inputHarga = document.createElement("input")
+var inputTotal = document.createElement("input")
 
 console.log(test)
 tdNo.append(textNo)
@@ -205,49 +206,36 @@ tdTotal.append(inputTotal)
   
 
 
-console.log("test", tbody)
+console.log("test", test.length)
 
 
 
 
 var table = $("#tabelpembelian");
-
+var nomor = test.length
 for (i = 0; i<test.length; i++){
     
     tr = tbody.insertRow(0)
-    for (j = 0 ; j<7; j++){
+    for (j = 0 ; j<0; j++){
         tr.insertCell()
-
-        // tr.insertCell(j)
     }
-    tr.insertCell(0).innerText = i
+    tr.insertCell(0).innerText = nomor
+    tr.insertCell(1).innerHTML = '<button id="btn" name="btn"><i data-feather="trash" style="stroke: red;" ></i></button>'
     tr.insertCell(2).innerText = test[i]['kodeobat']
-    tr.insertCell(4).innerText = test[i]['jumlah']
-    tr.insertCell(5).innerText = test[i]['harga']
-    tr.insertCell(6).innerText = test[i]['total']
+    tr.insertCell(3).innerText = test[i]['namaobat']
+    tr.insertCell(4).innerHTML = '<input class="form-control" onchange="some_function('+nomor+')" name="jumlah" type=number id="jumlah'+nomor+'" value="'+ test[i]['jumlah'] +'"></input>'
+    tr.insertCell(5).innerHTML = '<input class="form-control" name="harga" type=number id="harga'+nomor+'" value="'+ test[i]['harga'] +'"></input>'
+    tr.insertCell(6).innerHTML = '<input class="form-control" name="total "type=number id="total'+nomor+'" value="'+ test[i]['total'] +'" disabled ></input>'
+
+    nomor--
 }
 
 console.log(test[0]['kodeobat'])
 
-
-
-// tr.insertCell(0)
-
-
-
-
+feather.replace()
 
 
 console.log("tr",tr)
-
-// var trr = table.insertRow()
-
-// console.log("trr", trr)
-
-
-
-
-
 
 
     $('#nofaktur').keyup(function () {
@@ -518,6 +506,7 @@ console.log("tr",tr)
     var some_function = (some_var) => {
         return (e) => {
 
+            console.log("test SomeFunction")
 
             let jumlah = $('input#jumlah' + some_var).val()
             let harga = $('input#harga' + some_var).val()
