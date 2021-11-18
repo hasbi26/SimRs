@@ -8,7 +8,7 @@ class PembelianDetailModel extends Model
 {
     // ...
     protected $table = 'tr_pembelian_detail';
-    protected $primaryKey = 'no_faktur';
+    protected $primaryKey = 'id_detail';
     protected $useTimestamps = true;
     // protected $allowedFields = ['no_faktur', 'kodeobat', 'harga', 'jumlah', 'total'];
     protected $protectFields = false;
@@ -18,7 +18,7 @@ class PembelianDetailModel extends Model
 
 
     public function getAlldata($nofaktur){
-        return  $this->join('tm_obat as obat', 'obat.kodeobat = tr_pembelian_detail.kodeobat')->where('no_faktur', $nofaktur)->findAll();
+        return  $this->join('tm_obat', 'tr_pembelian_detail.kodeobat = tm_obat.kodeobat', 'inner')->where('no_faktur', $nofaktur)->findAll();
     }
 
 

@@ -403,7 +403,7 @@ class Obat extends BaseController
             foreach($data as $obats) {
                 $obat[] = array(
                     "id" => $obats->id,
-                    "text" => $obats->kodeobat . ' - ' . $obats->namaobat,
+                    "text" => $obats->kodeobat.'-'.$obats->namaobat,
                 );
             }
             $response['data'] = $obat;

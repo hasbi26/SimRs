@@ -50,6 +50,8 @@ class PembelianObat extends BaseController
 
             $dataku = $this->Pembelian->pembelianJoinSuplier();
 
+            // var_dump($dataku);
+
 			$data = [
 				'data_pembelian' => $dataku
 			];
@@ -122,6 +124,7 @@ class PembelianObat extends BaseController
                 $detail = [
                     'no_faktur' => $dataHeader['no_faktur'],
                     'kodeobat'  => $data['id'],
+                    'expire' => $data['expire'],
                     'harga'       => $data['harga'],
                     'jumlah'         => $data['jumlah'],
                     'total'        => $data['total'],
@@ -184,15 +187,17 @@ class PembelianObat extends BaseController
     if ($this->request->isAJAX()) {
     $id = $this->request->getVar('id');
 
+    
     $row = $this->Pembelian->pembelianJoinSuplier($id);
+
     $detail = $this->PembelianDetail->getAlldata($row[0]->no_faktur);
 
-    // var_dump($detail);
+
 
     $type = ['cash', 'kredit', 'konsiyasi'];
     
     $data = [
-        'id' => $row[0]->id,
+        'kodeobat' => $row[0]->id,
         'nofaktur' => $row[0]->no_faktur,
         'id_suplier' => $row[0]->id_suplier,
         'tgl_beli' => $row[0]->tgl_beli,
@@ -212,6 +217,91 @@ class PembelianObat extends BaseController
     } else {
     exit('404 Not Found');
     }
+    }
+
+
+    public function update_data(){
+        if ($this->request->isAJAX()){
+
+
+
+
+            $request = \Config\Services::request();
+
+
+            $data1 = $request->getRawInput();
+
+            $id = dot_array_search('id', $data1);
+            
+            $dataHeader = dot_array_search('data1.0', $data1);
+            $dataDetail = dot_array_search('datadetail', $data1);
+            $noFaktur = $dataHeader['no_faktur'];
+
+
+            
+            
+            $pembelianHeader = [
+                'id'        => $id,
+                'no_faktur'  => $dataHeader['no_faktur'],
+                'id_suplier'   =>  $dataHeader['id_suplier'],
+                'tgl_beli'         => $dataHeader['tgl_beli'],
+                'total_harga'       => $dataHeader['total_harga'],
+                'type'       => $dataHeader['type'],
+                'updated_by' => $_SESSION['name']
+
+            ];
+
+
+            $pembelianDetail = array();
+            foreach ($dataDetail as $data) :
+                $detail = [
+                    'id_detail' => $data['id_detail'],
+                    'no_faktur' => $dataHeader['no_faktur'],
+                    'kodeobat'  => $data['id'],
+                    'expire'    => $data['expire'],
+                    'harga'       => $data['harga'],
+                    'jumlah'         => $data['jumlah'],
+                    'total'        => $data['total'],
+                    'updated_by' => $_SESSION['name']
+                ];
+                array_push($pembelianDetail, $detail);
+            endforeach;
+
+
+            //cek jika arraylenght sebelum
+
+        $this->db->transStart();
+     //   $this->Pembelian->update($id,$pembelianHeader);
+     $this->Pembelian->save($pembelianHeader);
+     $this->PembelianDetail->updateBatch($pembelianDetail, 'id_detail');    
+        // $this->PembelianDetail->save($pembelianDetail);       
+        $this->db->transComplete();
+
+        if ($this->db->transStatus() == false) {
+            var_dump("failed" );
+            $result = [
+                'error' => [
+                    'name' => $this->db->transStatus(),
+                ]
+            ];
+
+            // session()->setflashdata('failed', 'Data penjualan gagal disimpan.');
+            // return redirect()->to(base_url('cart'));
+        } elseif ($this->db->transStatus() == true) {
+            $result = [
+                'success' => 'Data berhasil masuk ke database'
+            ];
+            // return $this->response->setJSON($result);
+            echo json_encode($result);
+            // $cart->destroy();
+            // session()->setflashdata('success', 'Data penjualan berhasil disimpan.');
+            // return redirect()->to(base_url('sales/' . $idPenjualan));
+        }
+
+
+        } else {
+            exit('404 Not Found');
+        }
     }
 
 

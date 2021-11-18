@@ -13,6 +13,8 @@
                     <div class="col-sm 6">
                         <div class="form-group row mb-1">
 
+                        <input type="hidden" id="id" value="<?= $kodeobat ?>">
+
                             <label for="labelname" class="col-sm-3 col-form-label">No Faktur</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" id="nofaktur" name="header"
@@ -115,13 +117,14 @@
                     <table class='table table-bordered' id="tabelpembelian">
                         <thead>
 
-                            <td>no</td>
-                            <td>actions</td>
-                            <td>id Obat</td>
-                            <td>nama</td>
-                            <td>jumlah</td>
-                            <td>harga</td>
-                            <td>total</td>
+                             <td  style="width: 3%;" >no</td>
+                            <td style="width: 5%;" >actions</td>
+                            <td style="width: 8%;" >id Obat</td>
+                            <td style="width: 30%;" >nama</td>
+                            <td style="width: 15%;" >expire</td>
+                            <td style="width: 10%;" >jumlah</td>
+                            <td style="width: 10%;" >harga</td>
+                            <td style="width: 10%;" >total</td>
                         </thead>
                         <tbody class="load_content">
 
@@ -142,8 +145,8 @@
                             style="height: 30px; width: 50%"> -->
                         <div class="form-group">
                             <label for="subtotal">Grand Total : </label>
-                            <input type="text" name="subtotal" id="subtotal" style="height: 30px; width:75% " value="<?= $total_harga?>"
-                                disabled />
+                            <input type="text" name="subtotal" id="subtotal" style="height: 30px; width:75% "
+                                value="<?= $total_harga?>" disabled />
                         </div>
                     </div>
                 </div>
@@ -161,81 +164,144 @@
 
 
 <script defer>
-    // var tbody  = ""
 
-var test = <?php 
-    echo json_encode($detail) ?>
+    var array_lama = <?php echo json_encode($detail) ?>
 
+    console.log("isi",array_lama)
 
+    var tbody = document.querySelector('.load_content');
 
-
-
-var tbody = document.querySelector('.load_content');
-
-
-var tdNo = document.createElement("td")
-var tdActions = document.createElement("td")
-var tdIdObat = document.createElement("td")
-var tdNamaObat = document.createElement("td")
-var tdJumlah = document.createElement("td")
-var tdHarga = document.createElement("td")
-var tdTotal = document.createElement("td")
-
-
-var input = document.createElement("input");
-
-var textNo = document.createTextNode("No")
-var textActions = document.createTextNode("Hapus")
-var textIdObat = document.createTextNode("idobat")
-var textNama = document.createTextNode("namaObat")
-var inputJumlah = document.createElement("input")
-var inputHarga = document.createElement("input")
-var inputTotal = document.createElement("input")
-
-console.log(test)
-tdNo.append(textNo)
-tdActions.append(textActions)
-tdIdObat.append(textIdObat)
-tdNamaObat.append(textNama)
-tdJumlah.append(inputJumlah)
-tdHarga.append(inputHarga)
-tdTotal.append(inputTotal)
-
-
+    var id = $("#id").val()
 
   
 
-
-console.log("test", test.length)
-
-
-
-
-var table = $("#tabelpembelian");
-var nomor = test.length
-for (i = 0; i<test.length; i++){
     
-    tr = tbody.insertRow(0)
-    for (j = 0 ; j<0; j++){
-        tr.insertCell()
+    // var table = $("#tabelpembelian");
+    var nomor = array_lama.length
+    for (i = 0; i < array_lama.length; i++) {
+        
+        tr = tbody.insertRow(0)
+        for (j = 0; j < 0; j++) {
+            tr.insertCell()
+        }
+        
+        var cell0 = tr.insertCell(0)
+        cell0.innerText = nomor
+        cell0.style.color = "green";
+
+        var cell1 = tr.insertCell(1)
+        cell1.innerHTML = '<button class="deleteDep" type="button"><i data-feather="trash" style="stroke: red;" ></i></button>'
+        cell1.onclick = function () {
+            kodeobat = this.parentNode.children[2].firstChild.nodeValue
+            objArr = objArr.filter(function (obj){
+                return obj.kodeobat !== kodeobat
+            })
+            this.parentNode.remove()
+            console.log("terbaru stelah di hapus",objArr)
+            mencari_total()
+
+        }
+
+        
+        var cell2 = tr.insertCell(2)
+        cell2.innerText = array_lama[i]['kodeobat']
+        
+        var cell3 = tr.insertCell(3)
+        cell3.innerText = array_lama[i]['namaobat']
+
+        var cell4 = tr.insertCell(4)
+        cell4.innerHTML = '<input class="form-control" name="expire" type=date id="expire' + nomor + '" value="' +
+        array_lama[i]['expire'] + '"></input>'
+        
+        var cell5 = tr.insertCell(5)
+        cell5.innerHTML = '<input class="form-control" name="jumlah" type=number id="jumlah' + nomor + '" value="' +array_lama[i]['jumlah'] + '"></input>'
+        cell5.onchange = function () {
+            var harga = this.parentNode.children[6].firstChild.value
+            var jumlah = this.lastChild.value
+            var total = parseInt(jumlah) * parseInt(harga)
+            this.parentNode.children[7].firstChild.value = total
+            mencari_total()
+        };
+        
+        
+        var cell6 = tr.insertCell(6)
+        cell6.innerHTML = '<input class="form-control" name="harga" type=number id="harga' + nomor + '" value="' + array_lama[i]['harga'] + '"></input>'
+            cell6.onchange = function () {
+                var jumlah = this.parentNode.children[5].firstChild.value
+                var harga = this.lastChild.value
+                var total = parseInt(jumlah) * parseInt(harga)
+                this.parentNode.children[7].firstChild.value = total
+                mencari_total()
+            }
+            
+            var cell7 = tr.insertCell(7)
+            cell7.innerHTML = '<input class="form-control" name="total" type=number id="total' + nomor + '" value="' + array_lama[i]['total'] + '" disabled ></input>'
+                
+            var cell8 = tr.insertCell(8)
+            cell8.innerText =  array_lama[i]['id_detail']
+            cell8.style="display:none;"        
+                    
+                    
+                    
+                    nomor--
+            }
+            
+            
+            var mencari_total = () => {
+                
+                var arr = document.getElementsByName('total');
+                console.log("find total", arr)
+                var tot = 0;
+                for (var i = 0; i < arr.length; i++) {
+                    if (parseInt(arr[i].value))
+                    tot += parseInt(arr[i].value);
+                }
+                $('input#subtotal').val(tot)
+                
+            }
+            
+            
+            var some_function = (some_var) => {
+                    return (e) => {
+                    
+                            console.log("SomeFunction", some_var)
+                    
+                            let jumlah = $('input#jumlah' + some_var).val()
+                            let harga = $('input#harga' + some_var).val()
+                            let total = parseInt(jumlah) * parseInt(harga)
+                            $('input#total' + some_var).val(total)
+                            mencari_total()
+                    
+                    
+                        }
+                    }
+                    
+                    feather.replace()
+                    
+
+    var delete_function = (i, n) => {
+        return (e) => {
+
+            var hapusRow = $('tr#row' + n).attr("id")
+            var hapus = $('td#idobat' + n).text()
+
+            const index = objArr.findIndex((element, index) => {
+                if (element.id === hapus) {
+                    return true
+                }
+            })
+
+
+            objArr.splice(index, 1)
+            var table = document.getElementById("tabelpembelian");
+            var row = document.getElementById(hapusRow)
+            row.parentNode.removeChild(row)
+            console.log("array update", objArr)
+            mencari_total()
+        }
     }
-    tr.insertCell(0).innerText = nomor
-    tr.insertCell(1).innerHTML = '<button id="btn" name="btn"><i data-feather="trash" style="stroke: red;" ></i></button>'
-    tr.insertCell(2).innerText = test[i]['kodeobat']
-    tr.insertCell(3).innerText = test[i]['namaobat']
-    tr.insertCell(4).innerHTML = '<input class="form-control" onchange="some_function('+nomor+')" name="jumlah" type=number id="jumlah'+nomor+'" value="'+ test[i]['jumlah'] +'"></input>'
-    tr.insertCell(5).innerHTML = '<input class="form-control" name="harga" type=number id="harga'+nomor+'" value="'+ test[i]['harga'] +'"></input>'
-    tr.insertCell(6).innerHTML = '<input class="form-control" name="total "type=number id="total'+nomor+'" value="'+ test[i]['total'] +'" disabled ></input>'
-
-    nomor--
-}
-
-console.log(test[0]['kodeobat'])
-
-feather.replace()
-
-
-console.log("tr",tr)
+                    
+                    
 
 
     $('#nofaktur').keyup(function () {
@@ -277,7 +343,7 @@ console.log("tr",tr)
 
     $(document).ready(function () {
         $('#search').select2({
-            dropdownParent: $('#addModal'),
+            dropdownParent: $('#editModal'),
             ajax: {
                 url: "/apotik/obat/select2obat",
                 type: 'post',
@@ -298,34 +364,41 @@ console.log("tr",tr)
         });
     });
 
-    function fun() {
-        var id = $('#search').val()
-        var text = $('#search').select2('data')[0]['text'];
-        console.log(id)
-        if (id != 0) {
-            // console.log("id = ", id, "oldid =", sessionStorage.getItem('idobat' + id))
-            if (sessionStorage.getItem('idobat' + id) !== null) {
-                // console.log("sudah ada")
-            } else {
-                // console.log("belum ada")
-                sessionStorage.setItem('idobat' + id, id);
-                var table = createTable(id, text);
-                document.getElementById("table").innerHTML = table;
-                cobaTambah();
-            }
-        }
-    }
+    // function fun() {
+    //     var id = $('#search').val()
+    //     var text = $('#search').select2('data')[0]['text'];
+    //     console.log(id)
+    //     if (id != 0) {
+    //         // console.log("id = ", id, "oldid =", sessionStorage.getItem('idobat' + id))
+    //         if (sessionStorage.getItem('idobat' + id) !== null) {
+    //             // console.log("sudah ada")
+    //         } else {
+    //             // console.log("belum ada")
+    //             sessionStorage.setItem('idobat' + id, id);
+    //             var table = createTable(id, text);
+    //             document.getElementById("table").innerHTML = table;
+    //             cobaTambah();
+    //         }
+    //     }
+    // }
 
-
+    
     // const obj = {}
-    var nomor = 1;
+    var nomor = array_lama.length + 1;
     var idxArr = 0;
     // let index = 0;
     // const objObat = [{}]
-    objArr = []
+    objArr = array_lama
+
+
+    // console.log("cek no",array_lama.length)
+     
     arrBaru = []
 
 
+    console.log("array baru",nomor)
+    
+    
     function cobaTambah() {
 
 
@@ -342,194 +415,150 @@ console.log("tr",tr)
         const id = document.createElement("td");
         // id.className = 'idnama'
         const nama = document.createElement("td");
+        const expire = document.createElement("td")
         const jumlah = document.createElement("td");
         const harga = document.createElement("td");
         const total = document.createElement("td");
 
 
-        if ($('#search').val() != 0) {
+if ($('#search').val() != 0) {
 
 
-            let Objekobat = {
-                id: idObat,
-                namaObat: namaObat,
-                jumlah: jumlah,
-                harga: harga,
-                total: total
-            }
-
-            let result = false
-            for (let i = 0; i < objArr.length; i++) {
-                console.log(objArr[i].id.includes(Objekobat.id))
-                result = objArr[i].id.includes(Objekobat.id)
-                if (result === true)
-                    break
-            }
-
-            if (result === false) {
-
-                load.appendChild(row);
-                load.appendChild(no);
-                load.appendChild(deleteRow)
-                load.appendChild(id)
-                load.appendChild(nama);
-                load.appendChild(jumlah)
-                load.appendChild(harga)
-                load.appendChild(total)
-
-
-                const deleteButton = document.createElement("button")
-                deleteButton.type = "button"
-                deleteButton.className = 'deleteDep'
-                deleteButton.innerHTML = '<i data-feather="trash" style="stroke: red;" ></i>';
-                deleteButton.onclick = delete_function(objArr.id, nomor);
-                // deleteButton.addEventListener("change", delete_function(nomor))
-
-                const text_nama = document.createTextNode(namaObat)
-                text_nama.class = "namaid"
-                const text_id = document.createTextNode(idObat)
-                text_id.class = "id"
-                id.id = 'idobat' + nomor
-                id.className = 'nameid'
-                nama.id = 'namaobat' + nomor
-                nama.className = 'namaobat'
-                const text_no = document.createTextNode(nomor)
-                const input_jumlah = document.createElement("input")
-                input_jumlah.className = "form-control";
-                input_jumlah.type = "number";
-                input_jumlah.min = "0";
-                input_jumlah.style.textAlign = "center";
-                input_jumlah.style.height = '30px'
-                input_jumlah.style.width = '80%'
-                input_jumlah.style.padding = '.5em 1em;'
-                // input_jumlah.setAttribute("onchange", calculateStuff())
-                //  input_jumlah.addEventListener("change", calculateStuff.bind(1))
-                input_jumlah.addEventListener("change", some_function())
-                input_jumlah.id = 'jumlah' + nomor
-                input_jumlah.name = 'jumlah'
-
-
-
-                const input_harga = document.createElement("input")
-                input_harga.className = "form-control";
-                input_harga.type = "number";
-                input_harga.min = "0";
-                input_harga.style.textAlign = "center";
-                input_harga.style.height = '30px'
-                input_harga.style.width = '80%'
-                input_harga.style.padding = '.5em 1em;'
-                input_harga.addEventListener("change", some_function(nomor))
-                // input_harga.addEventListener("change", calculateStuff.bind(6))
-                input_harga.id = 'harga' + nomor
-                input_harga.name = 'harga'
-
-
-
-                const input_total = document.createElement("input")
-                input_total.className = "form-control";
-                input_total.type = "number";
-                input_total.min = "0";
-                input_total.style.textAlign = "center";
-                input_total.id = "total" + nomor
-                input_total.style.height = '30px'
-                input_total.style.width = '80%'
-                input_total.style.padding = '.5em 1em;'
-                input_total.name = "total"
-
-
-
-                // console.log()
-
-                row.appendChild(no)
-                row.appendChild(deleteRow)
-                row.appendChild(id)
-                row.appendChild(nama)
-                row.appendChild(jumlah)
-                row.appendChild(harga)
-                row.appendChild(total)
-
-
-                no.appendChild(text_no)
-                id.appendChild(text_id);
-                nama.appendChild(text_nama)
-                jumlah.appendChild(input_jumlah);
-                harga.appendChild(input_harga);
-                total.appendChild(input_total);
-                deleteRow.appendChild(deleteButton);
-
-
-                $("input#total" + nomor).prop('disabled', true);
-                nomor++
-                idxArr++
-
-
-                objArr.push(Objekobat)
-
-                console.log("data masuk =", objArr)
-                feather.replace()
-
-            }
-        }
-
+    let Objekobat = {
+        id: idObat,
+        namaObat: namaObat,
+        expire : expire,
+        jumlah: jumlah,
+        harga: harga,
+        total: total
     }
 
-
-
-
-
-
-    var delete_function = (i, n) => {
-        return (e) => {
-
-            var hapusRow = $('tr#row' + n).attr("id")
-            var hapus = $('td#idobat' + n).text()
-
-            const index = objArr.findIndex((element, index) => {
-                if (element.id === hapus) {
-                    return true
-                }
-            })
-
-
-            objArr.splice(index, 1)
-            var table = document.getElementById("tabelpembelian");
-            var row = document.getElementById(hapusRow)
-            row.parentNode.removeChild(row)
-
-            mencari_total()
-        }
+    let result = false
+    for (let i = 0; i < objArr.length; i++) {
+        console.log(objArr[i].id.includes(Objekobat.id))
+        result = objArr[i].id.includes(Objekobat.id)
+        if (result === true)
+            break
     }
 
+    if (result === false) {
+
+        load.appendChild(row);
+        load.appendChild(no);
+        load.appendChild(deleteRow)
+        load.appendChild(id)
+        load.appendChild(nama);
+        load.appendChild(expire);
+        load.appendChild(jumlah)
+        load.appendChild(harga)
+        load.appendChild(total)
+
+
+        const deleteButton = document.createElement("button")
+        deleteButton.type = "button"
+        deleteButton.className = 'deleteDep'
+        deleteButton.innerHTML = '<i data-feather="trash" style="stroke: red;" ></i>';
+        deleteButton.onclick = delete_function(objArr.id, nomor);
+        // deleteButton.addEventListener("change", delete_function(nomor))
+
+        const text_nama = document.createTextNode(namaObat)
+        text_nama.class = "namaid"
+        const text_id = document.createTextNode(idObat)
+        text_id.class = "id"
+        id.id = 'idobat' + nomor
+        id.className = 'nameid'
+        nama.id = 'namaobat' + nomor
+        nama.className = 'namaobat'
+        const text_no = document.createTextNode(nomor)
+
+        const input_expire = document.createElement("input")
+        input_expire.type = "date"
+        input_expire.className = "form-control"
+        input_expire.id = 'expire' + nomor
+        input_expire.name = 'expire'
+
+
+        const input_jumlah = document.createElement("input")
+        input_jumlah.className = "form-control";
+        input_jumlah.type = "number";
+        input_jumlah.min = "0";
+        input_jumlah.style.textAlign = "center";
+        // input_jumlah.style.height = '30px'
+        // input_jumlah.style.width = '80%'
+        input_jumlah.style.padding = '.5em 1em;'
+        // input_jumlah.setAttribute("onchange", calculateStuff())
+        //  input_jumlah.addEventListener("change", calculateStuff.bind(1))
+        input_jumlah.addEventListener("change", some_function())
+        input_jumlah.id = 'jumlah' + nomor
+        input_jumlah.name = 'jumlah'
 
 
 
-    var some_function = (some_var) => {
-        return (e) => {
+        const input_harga = document.createElement("input")
+        input_harga.className = "form-control";
+        input_harga.type = "number";
+        input_harga.min = "0";
+        input_harga.style.textAlign = "center";
+        // input_harga.style.height = '30px'
+        // input_harga.style.width = '80%'
+        input_harga.style.padding = '.5em 1em;'
+        input_harga.addEventListener("change", some_function(nomor))
+        // input_harga.addEventListener("change", calculateStuff.bind(6))
+        input_harga.id = 'harga' + nomor
+        input_harga.name = 'harga'
 
-            console.log("test SomeFunction")
-
-            let jumlah = $('input#jumlah' + some_var).val()
-            let harga = $('input#harga' + some_var).val()
-            let total = parseInt(jumlah) * parseInt(harga)
-            $('input#total' + some_var).val(total)
-            mencari_total()
 
 
-        }
+        const input_total = document.createElement("input")
+        input_total.className = "form-control";
+        input_total.type = "number";
+        input_total.min = "0";
+        input_total.style.textAlign = "center";
+        input_total.id = "total" + nomor
+        // input_total.style.height = '30px'
+        // input_total.style.width = '80%'
+        input_total.style.padding = '.5em 1em;'
+        input_total.name = "total"
+
+
+
+        // console.log()
+
+        row.appendChild(no)
+        row.appendChild(deleteRow)
+        row.appendChild(id)
+        row.appendChild(nama)
+        row.appendChild(expire)
+        row.appendChild(jumlah)
+        row.appendChild(harga)
+        row.appendChild(total)
+
+
+        no.appendChild(text_no)
+        id.appendChild(text_id)
+        nama.appendChild(text_nama)
+        expire.appendChild(input_expire)
+        jumlah.appendChild(input_jumlah)
+        harga.appendChild(input_harga)
+        total.appendChild(input_total)
+        deleteRow.appendChild(deleteButton)
+
+
+        $("input#total" + nomor).prop('disabled', true);
+        nomor++
+        idxArr++
+
+
+        objArr.push(Objekobat)
+
+        console.log("data masuk =", objArr)
+        feather.replace()
+
     }
+}
 
-    var mencari_total = () => {
+}
 
-
-        var arr = document.getElementsByName('total');
-        var tot = 0;
-        for (var i = 0; i < arr.length; i++) {
-            if (parseInt(arr[i].value))
-                tot += parseInt(arr[i].value);
-        }
-        $('input#subtotal').val(tot)
-
-    }
 
 
 
@@ -602,14 +631,18 @@ console.log("tr",tr)
                 var col4 = $(this).find("td:eq(4) input").val();
                 var col5 = $(this).find("td:eq(5) input").val();
                 var col6 = $(this).find("td:eq(6) input").val();
+                var col7 = $(this).find("td:eq(7) input").val();
+                var col8 = $(this).find("td:eq(8)").text();
 
 
                 var objek = {
                     id: col2,
                     nama: col3,
-                    jumlah: col4,
-                    harga: col5,
-                    total: col6
+                    expire: col4,
+                    jumlah: col5,
+                    harga: col6,
+                    total: col7,
+                    id_detail : col8
                 }
 
                 datadetail.push(objek)
@@ -621,11 +654,12 @@ console.log("tr",tr)
 
             $.ajax({
                 type: 'POST',
-                url: '/apotik/pembelian/save_data',
+                url: '/apotik/pembelian/update_data',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest'
                 },
                 data: {
+                    id,
                     data1,
                     datadetail
                 },
@@ -640,7 +674,7 @@ console.log("tr",tr)
                         showConfirmButton: false,
                         timer: 1800
                     })
-                    $('#addModal').modal('hide');
+                    $('#editModal').modal('hide');
                     getProducts();
 
                 },
@@ -655,8 +689,4 @@ console.log("tr",tr)
         }
 
     })
-
-
-
-
 </script>

@@ -104,13 +104,14 @@
                     <table class='table table-bordered' id="tabelpembelian">
                         <thead>
 
-                            <td>no</td>
-                            <td>actions</td>
-                            <td>id Obat</td>
-                            <td>nama</td>
-                            <td>jumlah</td>
-                            <td>harga</td>
-                            <td>total</td>
+                            <td  style="width: 3%;" >no</td>
+                            <td style="width: 5%;" >actions</td>
+                            <td style="width: 8%;" >id Obat</td>
+                            <td style="width: 30%;" >nama</td>
+                            <td style="width: 15%;" >expire</td>
+                            <td style="width: 10%;" >jumlah</td>
+                            <td style="width: 10%;" >harga</td>
+                            <td style="width: 10%;" >total</td>
                         </thead>
                         <tbody class="load_content">
 
@@ -254,6 +255,7 @@
         const id = document.createElement("td");
         // id.className = 'idnama'
         const nama = document.createElement("td");
+        const expire = document.createElement("td")
         const jumlah = document.createElement("td");
         const harga = document.createElement("td");
         const total = document.createElement("td");
@@ -265,6 +267,7 @@
             let Objekobat = {
                 id: idObat,
                 namaObat: namaObat,
+                expire : expire,
                 jumlah: jumlah,
                 harga: harga,
                 total: total
@@ -285,6 +288,7 @@
                 load.appendChild(deleteRow)
                 load.appendChild(id)
                 load.appendChild(nama);
+                load.appendChild(expire);
                 load.appendChild(jumlah)
                 load.appendChild(harga)
                 load.appendChild(total)
@@ -306,13 +310,21 @@
                 nama.id = 'namaobat' + nomor
                 nama.className = 'namaobat'
                 const text_no = document.createTextNode(nomor)
+
+                const input_expire = document.createElement("input")
+                input_expire.type = "date"
+                input_expire.className = "form-control"
+                input_expire.id = 'expire' + nomor
+                input_expire.name = 'expire'
+
+
                 const input_jumlah = document.createElement("input")
                 input_jumlah.className = "form-control";
                 input_jumlah.type = "number";
                 input_jumlah.min = "0";
                 input_jumlah.style.textAlign = "center";
-                input_jumlah.style.height = '30px'
-                input_jumlah.style.width = '80%'
+                // input_jumlah.style.height = '30px'
+                // input_jumlah.style.width = '80%'
                 input_jumlah.style.padding = '.5em 1em;'
                 // input_jumlah.setAttribute("onchange", calculateStuff())
                 //  input_jumlah.addEventListener("change", calculateStuff.bind(1))
@@ -327,8 +339,8 @@
                 input_harga.type = "number";
                 input_harga.min = "0";
                 input_harga.style.textAlign = "center";
-                input_harga.style.height = '30px'
-                input_harga.style.width = '80%'
+                // input_harga.style.height = '30px'
+                // input_harga.style.width = '80%'
                 input_harga.style.padding = '.5em 1em;'
                 input_harga.addEventListener("change", some_function(nomor))
                 // input_harga.addEventListener("change", calculateStuff.bind(6))
@@ -343,8 +355,8 @@
                 input_total.min = "0";
                 input_total.style.textAlign = "center";
                 input_total.id = "total" + nomor
-                input_total.style.height = '30px'
-                input_total.style.width = '80%'
+                // input_total.style.height = '30px'
+                // input_total.style.width = '80%'
                 input_total.style.padding = '.5em 1em;'
                 input_total.name = "total"
 
@@ -356,18 +368,20 @@
                 row.appendChild(deleteRow)
                 row.appendChild(id)
                 row.appendChild(nama)
+                row.appendChild(expire)
                 row.appendChild(jumlah)
                 row.appendChild(harga)
                 row.appendChild(total)
 
 
                 no.appendChild(text_no)
-                id.appendChild(text_id);
+                id.appendChild(text_id)
                 nama.appendChild(text_nama)
-                jumlah.appendChild(input_jumlah);
-                harga.appendChild(input_harga);
-                total.appendChild(input_total);
-                deleteRow.appendChild(deleteButton);
+                expire.appendChild(input_expire)
+                jumlah.appendChild(input_jumlah)
+                harga.appendChild(input_harga)
+                total.appendChild(input_total)
+                deleteRow.appendChild(deleteButton)
 
 
                 $("input#total" + nomor).prop('disabled', true);
@@ -513,14 +527,16 @@
                 var col4 = $(this).find("td:eq(4) input").val();
                 var col5 = $(this).find("td:eq(5) input").val();
                 var col6 = $(this).find("td:eq(6) input").val();
+                var col7 = $(this).find("td:eq(7) input").val();
 
 
                 var objek = {
                     id: col2,
                     nama: col3,
-                    jumlah: col4,
-                    harga: col5,
-                    total: col6
+                    expire: col4,
+                    jumlah: col5,
+                    harga: col6,
+                    total: col7
                 }
 
                 datadetail.push(objek)
