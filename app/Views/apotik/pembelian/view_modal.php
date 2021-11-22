@@ -121,7 +121,7 @@
 
 
                 </div>
-                <div class="row">
+                <div class="row" style="margin-bottom:  1em;" >
                     <hr>
                     <div class="col-5">
                     </div>
@@ -136,6 +136,62 @@
                                 disabled />
                         </div>
                     </div>
+
+                </div>
+
+
+                <div class="row" style="margin-bottom:  1em;">
+                    <div class="col-5">
+                    </div>
+                    <div class="col-3">
+                    </div>
+                    <div class="col-4">
+                        <!-- sub total : <input type="text" class="form-control" id="type" name="type"
+                            style="height: 30px; width: 50%"> -->
+                        <div class="form-group">
+                            <label for="diskon">Diskon : </label>
+                            <input class="form-group"  type="text" name="diskon" id="diskon" style="height: 30px; width:80% " 
+                        />
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row" style="margin-bottom:  1em;" >
+                    <div class="col-5">
+                    </div>
+                    <div class="col-3">
+                    </div>
+                    <div class="col-4">
+                        <!-- sub total : <input type="text" class="form-control" id="type" name="type"
+                            style="height: 30px; width: 50%"> -->
+                        <div class="form-group">
+                            <label for="bayar">Bayar : </label>
+                            <input type="text" name="bayar" id="bayar" style="height: 30px; width:80% " 
+                        />
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-5">
+                    </div>
+                    <div class="col-3">
+                    </div>
+                    <div class="col-4">
+                        <!-- sub total : <input type="text" class="form-control" id="type" name="type"
+                            style="height: 30px; width: 50%"> -->
+                        <div class="form-group">
+                            <label for="sisa">Sisa / Kembalian : </label>
+                            <input type="text" name="sisa" id="sisa" style="height: 30px; width:60% " 
+                        />
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -328,7 +384,7 @@
                 input_jumlah.style.padding = '.5em 1em;'
                 // input_jumlah.setAttribute("onchange", calculateStuff())
                 //  input_jumlah.addEventListener("change", calculateStuff.bind(1))
-                input_jumlah.addEventListener("change", some_function())
+                input_jumlah.addEventListener("change", some_function(nomor))
                 input_jumlah.id = 'jumlah' + nomor
                 input_jumlah.name = 'jumlah'
 
@@ -457,6 +513,34 @@
     }
 
 
+    var totalAkhir = 0;
+    var diskon = 0;
+    var bayar = 0;
+    var sisa = 0 ;
+
+
+    $('input#bayar').change(function(){
+        
+
+        diskon = $('input#diskon').val() / 100 
+
+
+
+
+        var subTotal = $('input#subtotal').val() * diskon
+
+        bayar = this.value
+        sisa = bayar - subTotal
+
+        console.log("sisa",sisa)
+        
+        $('input#sisa').val(sisa)
+
+    });
+
+
+
+
 
     // var element = {},
     //     cart = [];
@@ -507,6 +591,9 @@
                 element.css("border", "1px solid green");
             }
         });
+
+
+        
 
         console.log("valid = ", isValid)
         if (isValid) {
