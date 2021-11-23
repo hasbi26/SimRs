@@ -126,12 +126,12 @@
                     <div class="col-5">
                     </div>
                     <div class="col-3">
+
                     </div>
                     <div class="col-4">
-                        <!-- sub total : <input type="text" class="form-control" id="type" name="type"
-                            style="height: 30px; width: 50%"> -->
-                        <div class="form-group">
-                            <label for="subtotal">Sub Total : </label>
+
+                        <div class="form-group" style="display: flex; justify-content: flex-end" >
+                            <label for="subtotal" style="margin-right: 1em;" >Sub Total : </label>
                             <input type="text" name="subtotal" id="subtotal" style="height: 30px; width:75% "
                                 disabled />
                         </div>
@@ -140,36 +140,28 @@
                 </div>
 
 
-                <div class="row" style="margin-bottom:  1em;">
-                    <div class="col-5">
-                    </div>
-                    <div class="col-3">
-                    </div>
-                    <div class="col-4">
-                        <!-- sub total : <input type="text" class="form-control" id="type" name="type"
-                            style="height: 30px; width: 50%"> -->
-                        <div class="form-group">
-                            <label for="diskon">Diskon : </label>
-                            <input class="form-group"  type="text" name="diskon" id="diskon" style="height: 30px; width:80% " 
-                        />
-                        </div>
-                    </div>
-
-                </div>
-
 
 
                 <div class="row" style="margin-bottom:  1em;" >
-                    <div class="col-5">
+                    <div class="col-4">
+                    <div>
+                            <label for="diskon">Diskon : </label>
+                            <input class="form-group"  type="text" name="diskon" id="diskon" style="height: 30px; width:70%"/>
                     </div>
-                    <div class="col-3">
                     </div>
                     <div class="col-4">
-                        <!-- sub total : <input type="text" class="form-control" id="type" name="type"
-                            style="height: 30px; width: 50%"> -->
-                        <div class="form-group">
-                            <label for="bayar">Bayar : </label>
-                            <input type="text" name="bayar" id="bayar" style="height: 30px; width:80% " 
+                    <div>
+                            <label for="grandtotal">Grand Total : </label>
+                            <input class="form-group"  type="text" name="grandtotal" id="grandtotal" style="height: 30px; width:70%"
+                        />
+                        </div>
+
+                    </div>
+                    <div class="col-4">
+
+                        <div class="form-group" style="display: flex; justify-content: flex-end">
+                            <label for="bayar" style="margin-right: 1em;" >Bayar : </label>
+                            <input type="text" name="bayar" id="bayar" style="height: 30px; width:75%;" 
                         />
                         </div>
                     </div>
@@ -178,17 +170,16 @@
 
 
                 <div class="row">
-                    <div class="col-5">
+                    <div class="col-4">
                     </div>
                     <div class="col-3">
                     </div>
-                    <div class="col-4">
+                    <div class="col-5">
                         <!-- sub total : <input type="text" class="form-control" id="type" name="type"
                             style="height: 30px; width: 50%"> -->
-                        <div class="form-group">
-                            <label for="sisa">Sisa / Kembalian : </label>
-                            <input type="text" name="sisa" id="sisa" style="height: 30px; width:60% " 
-                        />
+                        <div class="form-group" style="display: flex; justify-content: flex-end" >
+                            <label for="sisa"  style="margin-right: 1em;" >Sisa / Kembali : </label>
+                            <input type="text" name="sisa" id="sisa" style="height: 30px; width:60% "/>
                         </div>
                     </div>
 
@@ -512,29 +503,48 @@
 
     }
 
+    
+        var diskon = 0;
+        var bayar = 0;
+        var sisa = 0 ;
 
-    var totalAkhir = 0;
-    var diskon = 0;
-    var bayar = 0;
-    var sisa = 0 ;
+    $('input#diskon').change(function(){
+        
+        var subtot = $('input#subtotal').val()
+        
+        console.log(subtot)
+        diskon = subtot * this.value /100
+        
+        $('input#grandtotal').val(subtot - diskon)
+        
+        $(this).val(function(i, v){
+            return v.replace('%','') + '%';  });
+    })
+
 
 
     $('input#bayar').change(function(){
+
+
+        if (!$('input#grandtotal').val()) {
         
-
-        diskon = $('input#diskon').val() / 100 
-
-
-
-
-        var subTotal = $('input#subtotal').val() * diskon
-
+            console.log("kosong")
+        
+        var subTotal = $('input#subtotal').val()
         bayar = this.value
         sisa = bayar - subTotal
-
-        console.log("sisa",sisa)
-        
         $('input#sisa').val(sisa)
+
+
+        } else {
+            console.log("isi")
+            var grandTotal = $('input#grandtotal').val()
+            bayar = this.value
+            sisa = bayar - grandTotal
+            $('input#sisa').val(sisa)
+
+        }
+
 
     });
 
@@ -553,6 +563,10 @@
         var tanggal = $('#tanggalbeli').val()
         var type = $('#type').val()
         var total = $('#subtotal').val()
+        var diskon = $('input#diskon').val()
+        var hargadiskon = $('input#grandtotal').val()
+        var sisa = $('input#sisa').val()
+        var bayar = $('input#bayar').val()
         var isValid = true
 
         let datadetail = []
@@ -603,7 +617,11 @@
                 'id_suplier': suplier,
                 'tgl_beli': tanggal,
                 'type': type,
-                'total_harga': total
+                'total_harga': total,
+                'diskon' : diskon,
+                'harga_diskon' : hargadiskon,
+                'bayar' : bayar,
+                'sisa/kembalian' : sisa
             }]
             console.log("DATA HEADER =", data1)
 

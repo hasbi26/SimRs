@@ -134,7 +134,7 @@
 
 
                 </div>
-                <div class="row">
+                <div class="row" style="margin-bottom:  1em;" >
                     <hr>
                     <div class="col-5">
                     </div>
@@ -143,13 +143,59 @@
                     <div class="col-4">
                         <!-- sub total : <input type="text" class="form-control" id="type" name="type"
                             style="height: 30px; width: 50%"> -->
-                        <div class="form-group">
-                            <label for="subtotal">Grand Total : </label>
+                        <div class="form-group" style="display: flex; justify-content: flex-end" >
+                            <label for="subtotal" style="margin-right: 1em;" >Sub Total : </label>
                             <input type="text" name="subtotal" id="subtotal" style="height: 30px; width:75% "
                                 value="<?= $total_harga?>" disabled />
                         </div>
                     </div>
                 </div>
+
+
+                <div class="row" style="margin-bottom:  1em;" >
+                    <div class="col-4">
+                    <div>
+                            <label for="diskon">Diskon : </label>
+                            <input class="form-group"  type="text" name="diskon" id="diskon" style="height: 30px; width:70%" value="<?= $diskon?>"/>
+                    </div>
+                    </div>
+                    <div class="col-4">
+                    <div>
+                            <label for="grandtotal">Grand Total : </label>
+                            <input class="form-group"  type="text" name="grandtotal" id="grandtotal" style="height: 30px; width:70%" value="<?= $harga_diskon?>"
+                        />
+                        </div>
+
+                    </div>
+                    <div class="col-4">
+
+                        <div class="form-group" style="display: flex; justify-content: flex-end">
+                            <label for="bayar" style="margin-right: 1em;" >Bayar : </label>
+                            <input type="text" name="bayar" id="bayar" style="height: 30px; width:75%;" value="<?= $bayar?>"
+                        />
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-4">
+                    </div>
+                    <div class="col-3">
+                    </div>
+                    <div class="col-5">
+                        <!-- sub total : <input type="text" class="form-control" id="type" name="type"
+                            style="height: 30px; width: 50%"> -->
+                        <div class="form-group" style="display: flex; justify-content: flex-end" >
+                            <label for="sisa"  style="margin-right: 1em;" >Sisa / Kembali : </label>
+                            <input type="text" name="sisa" id="sisa" style="height: 30px; width:60% " value="<?= $sisa?>" />
+                        </div>
+                    </div>
+
+                </div>
+
 
             </div>
             <div class="modal-footer">

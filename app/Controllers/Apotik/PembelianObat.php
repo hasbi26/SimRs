@@ -114,6 +114,10 @@ class PembelianObat extends BaseController
                 'tgl_beli'         => $dataHeader['tgl_beli'],
                 'total_harga'       => $dataHeader['total_harga'],
                 'type'       => $dataHeader['type'],
+                'diskon'    => $dataHeader['diskon'],
+                'harga_diskon' => $dataHeader['harga_diskon'],
+                'bayar' => $dataHeader['bayar'],
+                'sisa/kembalian' => $dataHeader['sisa'],
                 'created_by' => $_SESSION['name']
 
             ];
@@ -203,6 +207,10 @@ class PembelianObat extends BaseController
         'tgl_beli' => $row[0]->tgl_beli,
         'total_harga' => $row[0]->total_harga,
         'type' => $row[0]->type,
+        'diskon' => $row[0]->diskon,
+        'harga_diskon' => $row[0]->harga_diskon,
+        'bayar' => $row[0]->bayar,
+        'sisa' => $row[0]->sisa,
         'suplier' => $this->Suplier->findAll(),
         'tipe' => $type,
         'detail' => $detail
